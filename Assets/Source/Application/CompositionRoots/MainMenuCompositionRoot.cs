@@ -21,6 +21,14 @@ namespace Sources.Application.CompositionRoots
     public sealed class MainMenuCompositionRoot : SceneCompositionRoot
     {
         [SerializeField] private MainMenuView _mainMenuView;
+        [SerializeField] private MainTaskListView _mainTaskListView;
+        [SerializeField] private TaskCreationView _taskCreationView;
+        [SerializeField] private TaskView _taskView;
+
+        private void Awake()
+        {
+            Initialize(new ServiceContainer());
+        }
 
         public override void Initialize(ServiceContainer serviceContainer)
         {
@@ -30,11 +38,14 @@ namespace Sources.Application.CompositionRoots
             };
 
             IWindowFsm windowFsm = new WindowFsm<RootWindow>(windows);
-            IConfigurationProvider configurationProvider = serviceContainer.Single<IConfigurationProvider>();
-            IPersistentDataService persistentDataService = serviceContainer.Single<IPersistentDataService>();
+            // IConfigurationProvider configurationProvider = serviceContainer.Single<IConfigurationProvider>();
+            // IPersistentDataService persistentDataService = serviceContainer.Single<IPersistentDataService>();
 
 
             _mainMenuView.Initialize();
+            _mainTaskListView.Initialize();
+            _taskCreationView.Initialize();
+            _taskView.Initialize();
         }
     }
 }

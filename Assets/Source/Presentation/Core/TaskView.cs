@@ -5,23 +5,24 @@ using UnityEngine;
 
 namespace Source.Presentation.Core
 {
-    public class MainMenuView : MonoBehaviour
+    public class TaskView : MonoBehaviour
     {
         [SerializeField] private Canvas _canvas;
 
         [SerializeField] private TMP_Text _currentDateText;
-        [SerializeField] private TMP_Text _todayTasksText;
-        [SerializeField] private ActionButton _viewTasksButton;
-        [SerializeField] private ActionButton _createTasksButton;
-
+        [SerializeField] private TMP_Text _nameText;
+        [SerializeField] private ActionButton _exitButton;
+        [SerializeField] private ActionButton _completeButton;
+        [SerializeField] private TMP_InputField _taskDescriptionInputField;
+        
         private CancellationTokenSource _cancellationTokenSource;
 
         private bool _isInitialized;
 
         public void Initialize()
         {
-            _viewTasksButton.Initialize();
-            _createTasksButton.Initialize();
+            _exitButton.Initialize();
+            _completeButton.Initialize();
             
             _isInitialized = true;
         }
