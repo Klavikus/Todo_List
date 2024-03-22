@@ -1,0 +1,18 @@
+{
+    "name": "Controllers.Api",
+    "rootNamespace": "",
+    "references": [
+        "GUID:bb19bb3391eb85d45965c2c5a69681dc",
+        "GUID:1454b29ebbc8bfb4b981917b0671f7f3",
+        "GUID:c6033943a18ac9048b8b57c61439acf7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
