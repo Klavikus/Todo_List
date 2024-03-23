@@ -1,5 +1,5 @@
-﻿using Source.Application.Configs;
-using Sources.Infrastructure.Api.Services.Providers;
+﻿using Source.Domain.Configs;
+using Source.Infrastructure.Api.Services.Providers;
 
 namespace Source.Infrastructure.Core.Services.Providers
 {

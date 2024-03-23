@@ -1,7 +1,7 @@
 ﻿using Source.Controllers.Api.Services;
 using Source.Domain;
 using Source.Domain.Data;
-using Sources.Infrastructure.Api.Services.Providers;
+using Source.Infrastructure.Api.Services.Providers;
 
 namespace Source.Infrastructure.Core.Factories
 {

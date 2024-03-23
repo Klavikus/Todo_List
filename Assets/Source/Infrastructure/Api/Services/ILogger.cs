@@ -1,4 +1,4 @@
-﻿namespace Sources.Infrastructure.Api.Services
+﻿namespace Source.Infrastructure.Api.Services
 {
     public interface ILogger
     {

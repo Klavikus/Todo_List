@@ -1,28 +1,31 @@
+using Source.Infrastructure.Api.Services.Providers;
 using Source.Infrastructure.Core.Factories;
 using Source.Infrastructure.Core.Services.DI;
-using Sources.Infrastructure.Api.Services.Providers;
 using UnityEngine;
 using MainMenuView = Source.Presentation.Core.MainMenuView;
 using MainMenuViewModel = Source.Controllers.Core.ViewModels.MainMenuViewModel;
 
-public class SceneEntryPoint : MonoBehaviour
+namespace Source.Application.CompositionRoots
 {
-    [SerializeField] private MainMenuView _mainMenuView;
+    public class SceneEntryPoint : MonoBehaviour
+    {
+        [SerializeField] private MainMenuView _mainMenuView;
     
-    private IConfigurationProvider _configurationProvider;
-    private ILevelModelFactory _levelModelFactory;
-    private MainMenuViewModel _mainMenuViewModel;
+        private IConfigurationProvider _configurationProvider;
+        private ILevelModelFactory _levelModelFactory;
+        private MainMenuViewModel _mainMenuViewModel;
 
-    private void Initialize(ServiceContainer container)
-    {
-        _configurationProvider = container.Single<IConfigurationProvider>();
-        _levelModelFactory = container.Single<ILevelModelFactory>();
+        private void Initialize(ServiceContainer container)
+        {
+            _configurationProvider = container.Single<IConfigurationProvider>();
+            _levelModelFactory = container.Single<ILevelModelFactory>();
         
-        Initialize();
-    }
+            Initialize();
+        }
 
-    private void Initialize()
-    {
+        private void Initialize()
+        {
       
+        }
     }
 }

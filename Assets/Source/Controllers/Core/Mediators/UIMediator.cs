@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Source.Common.Components.Implementations.SelectablesGroup;
+using Source.Common.Components.Implementations.SelectablesGroup;
 using Source.Controllers.Api.Mediators;
 using Source.Controllers.Api.Services;
 using Source.Infrastructure.Api.Builders;

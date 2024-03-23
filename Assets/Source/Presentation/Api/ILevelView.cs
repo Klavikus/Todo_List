@@ -1,4 +1,4 @@
-﻿using Assets.Source.Common.Components.Interfaces;
+﻿using Source.Common.Components.Interfaces;
 using Source.Controllers.Api.Mediators;
 using UnityEngine;
 

@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Source.Common.Components.Implementations.Tweens
+namespace Source.Common.Components.Implementations.Tweens
 {
     public sealed class LayoutElementPreferredSizeTween : TweenActionBaseComponent
     {

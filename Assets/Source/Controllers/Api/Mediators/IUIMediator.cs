@@ -1,5 +1,5 @@
 ﻿using System;
-using Assets.Source.Common.Components.Implementations.SelectablesGroup;
+using Source.Common.Components.Implementations.SelectablesGroup;
 using UnityEngine;
 
 namespace Source.Controllers.Api.Mediators

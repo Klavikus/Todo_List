@@ -1,7 +1,7 @@
-using Sources.Infrastructure.Api.Services;
+using Source.Infrastructure.Api.Services;
 using UnityEngine;
 
-namespace Sources.Application
+namespace Source.Application
 {
     internal class CoroutineRunner : MonoBehaviour, ICoroutineRunner
     {

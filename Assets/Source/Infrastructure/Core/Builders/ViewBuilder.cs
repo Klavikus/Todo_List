@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Source.Application.Configs;
 using Source.Controllers.Api.Mediators;
+using Source.Domain.Configs;
 using Source.Domain.Data;
 using Source.Infrastructure.Api;
 using Source.Infrastructure.Api.Builders;

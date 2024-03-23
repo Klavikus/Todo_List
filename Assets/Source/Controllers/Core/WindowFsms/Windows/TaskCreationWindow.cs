@@ -1,4 +1,4 @@
-using Assets.Source.Common.WindowFsm.Windows;
+using Source.Common.WindowFsm.Windows;
 
 namespace Source.Controllers.Core.WindowFsms.Windows
 {

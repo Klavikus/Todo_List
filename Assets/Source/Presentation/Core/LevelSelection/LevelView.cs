@@ -1,5 +1,5 @@
-﻿using Assets.Source.Common.Components.Implementations.Tweens;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using Source.Common.Components.Implementations.Tweens;
 using Source.Controllers.Api.Mediators;
 using Source.Presentation.Api;
 using UnityEngine;

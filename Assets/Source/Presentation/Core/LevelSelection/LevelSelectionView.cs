@@ -1,5 +1,5 @@
-﻿using Assets.Source.Common.Components.Implementations.SelectablesGroup;
-using Assets.Source.Common.Components.Implementations.Tweens;
+﻿using Source.Common.Components.Implementations.SelectablesGroup;
+using Source.Common.Components.Implementations.Tweens;
 using Source.Controllers.Api.Mediators;
 using UnityEngine;
 using UnityEngine.UI;

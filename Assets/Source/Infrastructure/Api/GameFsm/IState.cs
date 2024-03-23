@@ -1,4 +1,4 @@
-﻿namespace Sources.Infrastructure.Api.GameFsm
+﻿namespace Source.Infrastructure.Api.GameFsm
 {
     public interface IState : IExitableState
     {

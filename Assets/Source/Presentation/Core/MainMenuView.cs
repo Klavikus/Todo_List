@@ -1,6 +1,5 @@
 ﻿using System.Threading;
-using Assets.Source.Common.Components.Implementations.Buttons;
-using Assets.Source.Common.WindowFsm;
+using Source.Common.Components.Implementations.Buttons;
 using Source.Controllers.Api;
 using Source.Presentation.Api;
 using TMPro;

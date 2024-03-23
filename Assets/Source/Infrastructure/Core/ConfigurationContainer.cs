@@ -1,4 +1,4 @@
-﻿using Source.Application.Configs;
+﻿using Source.Domain.Configs;
 using UnityEngine;
 
 namespace Source.Infrastructure.Core

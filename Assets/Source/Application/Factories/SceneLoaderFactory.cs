@@ -1,8 +1,8 @@
+using Source.Infrastructure.Api.Services;
 using Source.Infrastructure.Core;
-using Sources.Infrastructure.Api.Services;
 using UnityEngine;
 
-namespace Sources.Application.Factories
+namespace Source.Application.Factories
 {
     internal class SceneLoaderFactory
     {

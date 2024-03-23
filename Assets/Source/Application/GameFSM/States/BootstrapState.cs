@@ -1,18 +1,18 @@
 ﻿using Source.Controllers.Api.Services;
 using Source.Controllers.Core.Services;
 using Source.Infrastructure.Api;
+using Source.Infrastructure.Api.GameFsm;
+using Source.Infrastructure.Api.Services;
+using Source.Infrastructure.Api.Services.Providers;
 using Source.Infrastructure.Core;
 using Source.Infrastructure.Core.Factories;
 using Source.Infrastructure.Core.Services;
 using Source.Infrastructure.Core.Services.DI;
 using Source.Infrastructure.Core.Services.Providers;
 using Source.Infrastructure.Core.Services.SDK;
-using Sources.Infrastructure.Api.GameFsm;
-using Sources.Infrastructure.Api.Services;
-using Sources.Infrastructure.Api.Services.Providers;
 using UnityEngine;
 
-namespace Sources.Application.GameFSM.States
+namespace Source.Application.GameFSM.States
 {
     public class BootstrapState : IState
     {

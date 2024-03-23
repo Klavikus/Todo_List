@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sources.Infrastructure.Api
+namespace Source.Infrastructure.Api
 {
     public interface IPoolable<out T>
     {

@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 252956310}
-  _currentDateText: {fileID: 1162286714}
+  _selectedDateText: {fileID: 1162286714}
   _selectDateButton: {fileID: 1074471098}
   _createTasksButton: {fileID: 1833998723}
   _exitTasksButton: {fileID: 2037785678}
@@ -1987,7 +1987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000045177792}
+  m_AnchoredPosition: {x: 0, y: 317976.6}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &743725559
@@ -5030,10 +5030,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 1814515107}
-  _currentDateText: {fileID: 1875866101}
-  _selectDateButton: {fileID: 695063578}
+  _selectedDateText: {fileID: 1875866101}
   _applyTaskButton: {fileID: 1405588093}
-  _exitTasksButton: {fileID: 1405588093}
+  _exitTasksButton: {fileID: 1026494865}
+  _selectDateButton: {fileID: 695063578}
   _taskNameInputField: {fileID: 1721192200}
   _taskDescriptionInputField: {fileID: 1868523511}
 --- !u!1 &1826070457
@@ -7197,7 +7197,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 82103064}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.51716584
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

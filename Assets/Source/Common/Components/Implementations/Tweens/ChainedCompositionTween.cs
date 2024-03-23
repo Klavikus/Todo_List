@@ -2,7 +2,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Source.Common.Components.Implementations.Tweens
+namespace Source.Common.Components.Implementations.Tweens
 {
     public sealed class ChainedCompositionTween : TweenActionBaseComponent
     {

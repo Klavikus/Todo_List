@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Assets.Source.Common.Components.Implementations
+namespace Source.Common.Components.Implementations
 {
     [Serializable]
     public struct Vector2TweenData

@@ -1,7 +1,7 @@
-using Sources.Application.Builders;
+using Source.Application.Builders;
 using UnityEngine;
 
-namespace Sources.Application.Bootstrap
+namespace Source.Application.Bootstrap
 {
     public class Bootstrap : MonoBehaviour
     {

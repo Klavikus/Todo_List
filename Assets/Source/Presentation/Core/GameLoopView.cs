@@ -1,6 +1,6 @@
 ﻿using System.Threading;
-using Assets.Source.Common.Components.Implementations.Buttons;
-using Assets.Source.Common.Components.Implementations.Tweens;
+using Source.Common.Components.Implementations.Buttons;
+using Source.Common.Components.Implementations.Tweens;
 using Source.Controllers.Api.Mediators;
 using UnityEngine;
 

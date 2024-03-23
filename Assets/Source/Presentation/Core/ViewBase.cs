@@ -9,7 +9,7 @@ namespace Source.Presentation.Core
     {
         private IPresenter _presenter;
 
-        public void Construct([NotNull] IPresenter presenter)
+        public void Construct(IPresenter presenter)
         {
             if (presenter == null) 
                 throw new ArgumentNullException(nameof(presenter));

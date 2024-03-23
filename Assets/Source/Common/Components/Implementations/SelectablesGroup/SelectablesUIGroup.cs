@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Assets.Source.Common.Components.Interfaces;
+using Source.Common.Components.Interfaces;
 using UnityEngine;
 
-namespace Assets.Source.Common.Components.Implementations.SelectablesGroup
+namespace Source.Common.Components.Implementations.SelectablesGroup
 {
     public class SelectablesUiGroup : MonoBehaviour
     {

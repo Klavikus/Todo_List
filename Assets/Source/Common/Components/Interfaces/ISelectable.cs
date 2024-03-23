@@ -1,4 +1,4 @@
-namespace Assets.Source.Common.Components.Interfaces
+namespace Source.Common.Components.Interfaces
 {
     public interface ISelectable
     {

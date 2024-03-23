@@ -1,8 +1,8 @@
-﻿using Assets.Source.Common.Components.Interfaces;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using Source.Common.Components.Interfaces;
 using UnityEngine;
 
-namespace Assets.Source.Common.Components.Implementations.Tweens
+namespace Source.Common.Components.Implementations.Tweens
 {
     public abstract class TweenActionBaseComponent : MonoBehaviour, ITweenActionBaseComponent
     {

@@ -1,4 +1,4 @@
-using Assets.Source.Common.Components.Implementations.Buttons;
+using Source.Common.Components.Implementations.Buttons;
 
 namespace Source.Presentation.Api
 {

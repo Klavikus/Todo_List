@@ -1,10 +1,11 @@
 ﻿using System;
-using Assets.Source.Common.WindowFsm;
-using Assets.Source.Common.WindowFsm.Windows;
+using Source.Common.WindowFsm;
+using Source.Common.WindowFsm.Windows;
 using Source.Controllers.Api;
+using Source.Controllers.Api.Services;
 using Source.Controllers.Core.WindowFsms.Windows;
+using Source.Infrastructure.Api.Services;
 using Source.Presentation.Api;
-using Sources.Infrastructure.Api.Services;
 
 namespace Source.Controllers.Core.Presenters
 {
@@ -13,7 +14,7 @@ namespace Source.Controllers.Core.Presenters
         private readonly ITaskView _taskView;
         private readonly IWindowFsm _windowFsm;
 
-        public TaskViewPresenter(ITaskView taskView, IWindowFsm windowFsm, ILogger logger)
+        public TaskViewPresenter(ITaskView taskView, IWindowFsm windowFsm, ILogger logger, ITaskService taskService)
         {
             _taskView = taskView ?? throw new ArgumentNullException(nameof(taskView));
             _windowFsm = windowFsm ?? throw new ArgumentNullException(nameof(windowFsm));

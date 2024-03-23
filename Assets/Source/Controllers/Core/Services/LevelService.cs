@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Source.Application.Configs;
 using Source.Controllers.Api.Services;
+using Source.Domain.Configs;
 
 namespace Source.Controllers.Core.Services
 {

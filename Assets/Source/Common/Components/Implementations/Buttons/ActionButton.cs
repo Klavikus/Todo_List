@@ -1,9 +1,9 @@
 ﻿using System;
-using Assets.Source.Common.Components.Implementations.Tweens;
+using Source.Common.Components.Implementations.Tweens;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Source.Common.Components.Implementations.Buttons
+namespace Source.Common.Components.Implementations.Buttons
 {
     public class ActionButton : MonoBehaviour
     {
@@ -11,7 +11,7 @@ namespace Assets.Source.Common.Components.Implementations.Buttons
         [SerializeField] private TweenActionBaseComponent _actionComponent;
 
         public event Action Clicked;
-        
+
         private bool _isInteractionLocked;
 
         private void OnEnable() =>
@@ -31,9 +31,13 @@ namespace Assets.Source.Common.Components.Implementations.Buttons
             if (_isInteractionLocked)
                 return;
 
+            _isInteractionLocked = true;
+
             await _actionComponent.PlayForward();
             await _actionComponent.PlayBackward();
-            
+
+            _isInteractionLocked = false;
+
             Clicked?.Invoke();
         }
     }

@@ -1,8 +1,8 @@
 ﻿using System;
-using Assets.Source.Common.WindowFsm;
+using Source.Common.WindowFsm;
 using Source.Controllers.Api.Services;
 using Source.Controllers.Api.ViewModels;
-using Sources.Infrastructure.Api.GameFsm;
+using Source.Infrastructure.Api.GameFsm;
 
 namespace Source.Controllers.Core.ViewModels
 {

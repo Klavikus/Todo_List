@@ -1,6 +1,6 @@
-﻿using Source.Application.Configs;
+﻿using Source.Domain.Configs;
 
-namespace Sources.Infrastructure.Api.Services.Providers
+namespace Source.Infrastructure.Api.Services.Providers
 {
     public interface IConfigurationProvider
     {

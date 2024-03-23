@@ -1,7 +1,7 @@
 ﻿using Source.Infrastructure.Core.Services.DI;
 using UnityEngine;
 
-namespace Sources.Application.CompositionRoots
+namespace Source.Application.CompositionRoots
 {
     public abstract class SceneCompositionRoot : MonoBehaviour
     {

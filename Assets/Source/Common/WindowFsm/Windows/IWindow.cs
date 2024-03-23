@@ -1,4 +1,4 @@
-﻿namespace Assets.Source.Common.WindowFsm.Windows
+﻿namespace Source.Common.WindowFsm.Windows
 {
     public interface IWindow
     {

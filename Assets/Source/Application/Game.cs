@@ -1,7 +1,7 @@
-using Sources.Application.GameFSM.States;
-using Sources.Infrastructure.Api.GameFsm;
+using Source.Application.GameFSM.States;
+using Source.Infrastructure.Api.GameFsm;
 
-namespace Sources.Application
+namespace Source.Application
 {
     internal class Game
     {

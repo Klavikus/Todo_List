@@ -2,8 +2,8 @@
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Source.Application.Configs;
 using Source.Controllers.Api.Services;
+using Source.Domain.Configs;
 using Source.Domain.Data;
 using Source.Presentation.Core.PuzzleCore;
 using UnityEngine;

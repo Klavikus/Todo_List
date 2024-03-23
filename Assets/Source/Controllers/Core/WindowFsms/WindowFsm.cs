@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Source.Common.WindowFsm;
-using Assets.Source.Common.WindowFsm.Windows;
+using Source.Common.WindowFsm;
+using Source.Common.WindowFsm.Windows;
 
 namespace Source.Controllers.Core.WindowFsms
 {
@@ -33,11 +33,19 @@ namespace Source.Controllers.Core.WindowFsms
 
             _stack.Push(_windowsByType[typeof(TWindow)]);
 
-            if (_currentWindow != null) 
+            if (_currentWindow != null)
                 Closed?.Invoke(_currentWindow);
 
             _currentWindow = _stack.Peek();
             Opened?.Invoke(_currentWindow);
+        }
+
+        public void Close<TWindow>() where TWindow : IWindow
+        {
+            if (_currentWindow != _windowsByType[typeof(TWindow)])
+                return;
+
+            CloseCurrentWindow();
         }
 
         public void CloseCurrentWindow()
@@ -48,15 +56,15 @@ namespace Source.Controllers.Core.WindowFsms
             _stack.Pop();
             Closed?.Invoke(_currentWindow);
             _stack.TryPeek(out _currentWindow);
-            
-            if (_currentWindow != null) 
+
+            if (_currentWindow != null)
                 Opened?.Invoke(_currentWindow);
         }
 
         public void ClearHistory()
         {
             _stack.Clear();
-            
+
             if (_currentWindow != null)
                 _stack.Push(_currentWindow);
         }
