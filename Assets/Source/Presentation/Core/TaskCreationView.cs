@@ -12,6 +12,7 @@ namespace Source.Presentation.Core
         [SerializeField] private TMP_Text _currentDateText;
         [SerializeField] private ActionButton _selectDateButton;
         [SerializeField] private ActionButton _applyTaskButton;
+        [SerializeField] private ActionButton _exitTasksButton;
         [SerializeField] private TMP_InputField _taskNameInputField;
         [SerializeField] private TMP_InputField _taskDescriptionInputField;
         
@@ -23,6 +24,8 @@ namespace Source.Presentation.Core
         {
             _selectDateButton.Initialize();
             _applyTaskButton.Initialize();
+            _exitTasksButton.Initialize();
+            
             
             _isInitialized = true;
         }
