@@ -1,11 +1,11 @@
-﻿using System.Threading;
-using Assets.Source.Common.Components.Implementations.Buttons;
+﻿using Assets.Source.Common.Components.Implementations.Buttons;
+using Source.Presentation.Api;
 using TMPro;
 using UnityEngine;
 
 namespace Source.Presentation.Core
 {
-    public class MainTaskListView : MonoBehaviour
+    public class MainTaskListView : ViewBase, IMainTaskListView
     {
         [SerializeField] private Canvas _canvas;
 
@@ -14,30 +14,18 @@ namespace Source.Presentation.Core
         [SerializeField] private ActionButton _createTasksButton;
         [SerializeField] private ActionButton _exitTasksButton;
         [SerializeField] private Transform _createdTaskContainer;
-        
-        private CancellationTokenSource _cancellationTokenSource;
 
-        private bool _isInitialized;
-
-        public void Initialize()
+        public override void OnAfterConstruct()
         {
             _selectDateButton.Initialize();
             _createTasksButton.Initialize();
             _exitTasksButton.Initialize();
-            
-            _isInitialized = true;
         }
 
-        private void OnDestroy()
-        {
-            if (_isInitialized == false)
-                return;
-        }
-
-        private void Hide() =>
+        public void Hide() =>
             _canvas.enabled = false;
 
-        private void Show() =>
+        public void Show() =>
             _canvas.enabled = true;
     }
 }

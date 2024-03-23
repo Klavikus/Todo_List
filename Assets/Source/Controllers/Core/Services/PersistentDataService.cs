@@ -5,7 +5,7 @@ using Source.Domain.Data;
 using Sources.Infrastructure.Api.Services;
 using UnityEngine;
 
-namespace Sources.Controllers.Core.Services
+namespace Source.Controllers.Core.Services
 {
     public class PersistentDataService : IPersistentDataService
     {

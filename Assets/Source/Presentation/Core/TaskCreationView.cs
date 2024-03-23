@@ -1,11 +1,13 @@
 ﻿using System.Threading;
 using Assets.Source.Common.Components.Implementations.Buttons;
+using Assets.Source.Common.WindowFsm;
+using Source.Presentation.Api;
 using TMPro;
 using UnityEngine;
 
 namespace Source.Presentation.Core
 {
-    public class TaskCreationView : MonoBehaviour
+    public class TaskCreationView : ViewBase, ITaskCreationView
     {
         [SerializeField] private Canvas _canvas;
 
@@ -15,31 +17,21 @@ namespace Source.Presentation.Core
         [SerializeField] private ActionButton _exitTasksButton;
         [SerializeField] private TMP_InputField _taskNameInputField;
         [SerializeField] private TMP_InputField _taskDescriptionInputField;
-        
+
         private CancellationTokenSource _cancellationTokenSource;
+        private IWindowFsm _windowFsm;
 
-        private bool _isInitialized;
-
-        public void Initialize()
+        public override void OnAfterConstruct()
         {
             _selectDateButton.Initialize();
             _applyTaskButton.Initialize();
             _exitTasksButton.Initialize();
-            
-            
-            _isInitialized = true;
         }
 
-        private void OnDestroy()
-        {
-            if (_isInitialized == false)
-                return;
-        }
-
-        private void Hide() =>
+        public void Hide() =>
             _canvas.enabled = false;
 
-        private void Show() =>
+        public void Show() =>
             _canvas.enabled = true;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Assets.Source.Common.WindowFsm;
 using Assets.Source.Common.WindowFsm.Windows;
 
-namespace Sources.Controllers.Core.WindowFsms
+namespace Source.Controllers.Core.WindowFsms
 {
     public class WindowFsm<T> : IWindowFsm
         where T : IWindow

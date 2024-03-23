@@ -1,11 +1,11 @@
-﻿using System.Threading;
-using Assets.Source.Common.Components.Implementations.Buttons;
+﻿using Assets.Source.Common.Components.Implementations.Buttons;
+using Source.Presentation.Api;
 using TMPro;
 using UnityEngine;
 
 namespace Source.Presentation.Core
 {
-    public class TaskView : MonoBehaviour
+    public class TaskView : ViewBase, ITaskView
     {
         [SerializeField] private Canvas _canvas;
 
@@ -14,29 +14,17 @@ namespace Source.Presentation.Core
         [SerializeField] private ActionButton _exitButton;
         [SerializeField] private ActionButton _completeButton;
         [SerializeField] private TMP_InputField _taskDescriptionInputField;
-        
-        private CancellationTokenSource _cancellationTokenSource;
 
-        private bool _isInitialized;
-
-        public void Initialize()
+        public override void OnAfterConstruct()
         {
             _exitButton.Initialize();
             _completeButton.Initialize();
-            
-            _isInitialized = true;
         }
 
-        private void OnDestroy()
-        {
-            if (_isInitialized == false)
-                return;
-        }
-
-        private void Hide() =>
+        public void Hide() =>
             _canvas.enabled = false;
 
-        private void Show() =>
+        public void Show() =>
             _canvas.enabled = true;
     }
 }

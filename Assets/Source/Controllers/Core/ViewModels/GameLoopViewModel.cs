@@ -4,7 +4,7 @@ using Source.Controllers.Api.Services;
 using Source.Controllers.Api.ViewModels;
 using Sources.Infrastructure.Api.GameFsm;
 
-namespace Sources.Controllers.Core.ViewModels
+namespace Source.Controllers.Core.ViewModels
 {
     public class GameLoopViewModel : IGameLoopViewModel, IDisposable
     {

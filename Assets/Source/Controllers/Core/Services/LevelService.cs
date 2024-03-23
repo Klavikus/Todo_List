@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Source.Application.Configs;
 using Source.Controllers.Api.Services;
 
-namespace Sources.Controllers.Core.Services
+namespace Source.Controllers.Core.Services
 {
     public class LevelService : ILevelService
     {

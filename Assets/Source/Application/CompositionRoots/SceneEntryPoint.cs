@@ -3,7 +3,7 @@ using Source.Infrastructure.Core.Services.DI;
 using Sources.Infrastructure.Api.Services.Providers;
 using UnityEngine;
 using MainMenuView = Source.Presentation.Core.MainMenuView;
-using MainMenuViewModel = Sources.Controllers.Core.ViewModels.MainMenuViewModel;
+using MainMenuViewModel = Source.Controllers.Core.ViewModels.MainMenuViewModel;
 
 public class SceneEntryPoint : MonoBehaviour
 {

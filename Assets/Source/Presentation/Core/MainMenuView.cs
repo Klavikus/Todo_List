@@ -1,11 +1,14 @@
 ﻿using System.Threading;
 using Assets.Source.Common.Components.Implementations.Buttons;
+using Assets.Source.Common.WindowFsm;
+using Source.Controllers.Api;
+using Source.Presentation.Api;
 using TMPro;
 using UnityEngine;
 
 namespace Source.Presentation.Core
 {
-    public class MainMenuView : MonoBehaviour
+    public class MainMenuView : ViewBase, IMainMenuView
     {
         [SerializeField] private Canvas _canvas;
 
@@ -14,28 +17,18 @@ namespace Source.Presentation.Core
         [SerializeField] private ActionButton _viewTasksButton;
         [SerializeField] private ActionButton _createTasksButton;
 
-        private CancellationTokenSource _cancellationTokenSource;
+        public ActionButton ViewTasksButton => _viewTasksButton;
+        public ActionButton CreateTasksButton => _createTasksButton;
 
-        private bool _isInitialized;
+        public void Show() =>
+            _canvas.enabled = true;
 
-        public void Initialize()
-        {
-            _viewTasksButton.Initialize();
-            _createTasksButton.Initialize();
-            
-            _isInitialized = true;
-        }
-
-        private void OnDestroy()
-        {
-            if (_isInitialized == false)
-                return;
-        }
-
-        private void Hide() =>
+        public void Hide() =>
             _canvas.enabled = false;
 
-        private void Show() =>
-            _canvas.enabled = true;
+        public void SetCurrentDateText(string text) =>
+            _currentDateText.text = text; 
+        public void SetTodayTasksText(string text) =>
+            _todayTasksText.text = text;
     }
 }

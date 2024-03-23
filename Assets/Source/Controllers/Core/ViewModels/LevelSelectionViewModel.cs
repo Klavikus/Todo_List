@@ -6,7 +6,7 @@ using Source.Infrastructure.Api.Builders;
 using Sources.Infrastructure.Api.GameFsm;
 using UnityEngine;
 
-namespace Sources.Controllers.Core.ViewModels
+namespace Source.Controllers.Core.ViewModels
 {
     public class LevelSelectionViewModel : ILevelSelectionViewModel, IDisposable
     {
