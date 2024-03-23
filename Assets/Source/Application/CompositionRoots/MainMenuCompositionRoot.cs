@@ -27,6 +27,7 @@ namespace Sources.Application.CompositionRoots
 
         public override void Initialize(ServiceContainer serviceContainer)
         {
+            
             Dictionary<Type, IWindow> windows = new Dictionary<Type, IWindow>()
             {
                 [typeof(RootWindow)] = new RootWindow(),

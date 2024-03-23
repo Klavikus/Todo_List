@@ -36,13 +36,15 @@ namespace Source.Controllers.Core.Presenters
             _windowFsm.Opened += OnWindowOpened;
 
             _mainMenuView.SetCurrentDateText(DateTime.Now.ToShortDateString());
-            _mainMenuView.CreateTasksButton.Clicked += OnViewTasksButtonClicked;
+            _mainMenuView.CreateTasksButton.Clicked += OnCreateTasksButtonClicked;
+            _mainMenuView.ViewTasksButton.Clicked += OnViewTasksButtonClicked;
         }
 
         public void Disable()
         {
             _windowFsm.Opened -= OnWindowOpened;
-            _mainMenuView.CreateTasksButton.Clicked -= OnViewTasksButtonClicked;
+            _mainMenuView.CreateTasksButton.Clicked -= OnCreateTasksButtonClicked;
+            _mainMenuView.ViewTasksButton.Clicked -= OnViewTasksButtonClicked;
         }
 
         private void OnViewTasksButtonClicked()
@@ -53,6 +55,10 @@ namespace Source.Controllers.Core.Presenters
                 _currentDateTime.Day,
                 OnDatePicked,
                 OnDatePickCanceled);
+        }
+
+        private void OnCreateTasksButtonClicked()
+        {
         }
 
         private void OnDatePicked(int year, int month, int day) =>
