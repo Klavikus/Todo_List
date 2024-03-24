@@ -57,7 +57,6 @@ namespace Source.Application.GameFSM.States
             FirebaseService firebaseService = new FirebaseService();
             
             ISaveService saveService = new SaveService();
-            IPersistentDataService persistentDataService = new PersistentDataService(saveService);
            
             IResourceProvider resourceProvider = new ResourceProvider();
             _services.RegisterAsSingle(resourceProvider);
@@ -69,7 +68,6 @@ namespace Source.Application.GameFSM.States
             _services.RegisterAsSingle<IGameStateMachine>(_gameStateMachine);
             _services.RegisterAsSingle(coroutineRunner);
             _services.RegisterAsSingle(configurationProvider);
-            _services.RegisterAsSingle(persistentDataService);
 
             _services.LockRegister();
         }

@@ -12,5 +12,6 @@ namespace Source.Presentation.Api
         ActionButton ExitTasksButton { get; }
         TMP_InputField TaskNameInputField { get; }
         TMP_InputField TaskDescriptionInputField { get; }
+        void Destroy();
     }
 }

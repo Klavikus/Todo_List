@@ -26,5 +26,8 @@ namespace Source.Presentation.Core
 
         public void Hide() =>
             _canvas.enabled = false;
+
+        public void Destroy() =>
+            Object.Destroy(gameObject);
     }
 }

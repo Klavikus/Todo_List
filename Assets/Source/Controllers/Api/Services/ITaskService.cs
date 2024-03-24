@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Modules.DAL.Implementation.Data;
 
 namespace Source.Controllers.Api.Services
@@ -8,7 +9,7 @@ namespace Source.Controllers.Api.Services
         event Action<TaskData> TaskCreated;
         event Action<DateTime> FocusedDateChanged;
         DateTime FocusedDate { get; }
-        TaskData[] GetTodayTasks();
+        IEnumerable<TaskData> GetTodayTasks();
         void FocusDate(DateTime dateTime);
     }
 }

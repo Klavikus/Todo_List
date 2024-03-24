@@ -40,7 +40,10 @@ namespace Modules.DAL.Implementation.Repositories
         public List<T> GetAll<T>() where T : class, IEntity
         {
             if (_reposByTypes.TryGetValue(typeof(T), out IRepository repository))
-                return repository.GetAll() as List<T>;
+            {
+                List<IEntity> a = repository.GetAll();
+                return repository.GetAll().Cast<T>().ToList();
+            }
 
             return null;
         }

@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 2057955708414884502}
   - component: {fileID: 6042033974157591451}
   - component: {fileID: 5257535059923836170}
+  - component: {fileID: -7306367631813703093}
   m_Layer: 5
   m_Name: CreatedTaskView
   m_TagString: Untagged
@@ -232,6 +233,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &-7306367631813703093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725081480331828435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2a7a0e5ccb4272a7c32efd442cfff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4568914978017979225
 GameObject:
   m_ObjectHideFlags: 0

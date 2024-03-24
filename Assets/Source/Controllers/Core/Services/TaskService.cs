@@ -24,14 +24,11 @@ namespace Source.Controllers.Core.Services
         public void FocusDate(DateTime dateTime) =>
             FocusedDate = dateTime.Date;
 
-        public TaskData[] GetTodayTasks()
+        public IEnumerable<TaskData> GetTodayTasks()
         {
             DateTime dateTimeNow = DateTime.Now;
 
-            return _repository
-                .GetAll<TaskData>()
-                .Where(data => data.TargetDate.Date == dateTimeNow.Date)
-                .ToArray();
+            return _repository.GetAll<TaskData>().Where(data => data.TargetDate.Date == dateTimeNow.Date);
         }
     }
 }

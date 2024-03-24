@@ -8,15 +8,15 @@ using Source.Presentation.Api;
 
 namespace Source.Controllers.Core.Presenters
 {
-    public class TaskCreationPresenter : IPresenter
+    public class TaskPresenter : IPresenter
     {
-        private readonly ITaskCreationView _view;
+        private readonly ICreatedTaskView _view;
         private readonly IWindowFsm _windowFsm;
         private readonly ILogger _logger;
         private readonly ITaskService _taskService;
 
-        public TaskCreationPresenter(
-            ITaskCreationView view,
+        public TaskPresenter(
+            ICreatedTaskView view,
             IWindowFsm windowFsm,
             ILogger logger,
             ITaskService taskService)
@@ -29,28 +29,28 @@ namespace Source.Controllers.Core.Presenters
 
         public void Enable()
         {
-            _view.ApplyTaskButton.Initialize();
-            _view.ExitTasksButton.Initialize();
-            _view.SelectDateButton.Initialize();
+            // _view.ApplyTaskButton.Initialize();
+            // _view.ExitTasksButton.Initialize();
+            // _view.SelectDateButton.Initialize();
 
             OnWindowOpened(_windowFsm.CurrentWindow);
             _windowFsm.Opened += OnWindowOpened;
 
-            _view.ExitTasksButton.Clicked += OnExitTasksButtonClicked;
+            // _view.ExitTasksButton.Clicked += OnExitTasksButtonClicked;
         }
 
         public void Disable()
         {
             _windowFsm.Opened -= OnWindowOpened;
-            _view.ExitTasksButton.Clicked -= OnExitTasksButtonClicked;
+            // _view.ExitTasksButton.Clicked -= OnExitTasksButtonClicked;
         }
 
         private void OnWindowOpened(IWindow window)
         {
-            if (window is TaskCreationWindow)
-                _view.Show();
-            else
-                _view.Hide();
+            // if (window is TaskCreationWindow)
+            //     _view.Show();
+            // else
+            //     _view.Hide();
         }
 
         private void OnExitTasksButtonClicked() =>

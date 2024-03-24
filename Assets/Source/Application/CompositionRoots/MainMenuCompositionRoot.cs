@@ -6,6 +6,7 @@ using Modules.DAL.Abstract.Repositories;
 using Modules.DAL.Implementation.Data;
 using Modules.DAL.Implementation.DataContexts;
 using Modules.DAL.Implementation.Repositories;
+using Source.Application.Factories;
 using Source.Common.WindowFsm;
 using Source.Common.WindowFsm.Windows;
 using Source.Controllers.Api.Services;
@@ -18,7 +19,7 @@ using Source.Infrastructure.Core.Services;
 using Source.Infrastructure.Core.Services.DI;
 using Source.Presentation.Core;
 using UnityEngine;
-using ILogger = Source.Infrastructure.Api.Services.ILogger;
+using ILogger = Source.Controllers.Api.Services.ILogger;
 
 namespace Source.Application.CompositionRoots
 {
@@ -28,8 +29,8 @@ namespace Source.Application.CompositionRoots
         [SerializeField] private MainTaskListView _mainTaskListView;
         [SerializeField] private TaskCreationView _taskCreationView;
         [SerializeField] private TaskView _taskView;
-        [SerializeField] private ConfigurationContainer _type;
-        
+        [SerializeField] private ConfigurationContainer _configurationContainer;
+
         private void Awake()
         {
             Initialize(new ServiceContainer());
@@ -43,6 +44,21 @@ namespace Source.Application.CompositionRoots
             IProgressRepository repository = new CompositeRepository(dataContext, dataTypes);
 
             await dataContext.Load();
+            dataContext.Clear();
+
+            for (int i = 0; i < 10; i++)
+            {
+                TaskData task = new($"{nameof(TaskData)}_{i}")
+                {
+                    Name = $"Task №{i}",
+                    Description = $"This is test task",
+                    TargetDate = DateTime.Now.Date,
+                    IsCompleted = i % 2 == 0
+                };
+                repository.Add<TaskData>(task);
+            }
+
+            await dataContext.Save();
 
             Dictionary<Type, IWindow> windows = new Dictionary<Type, IWindow>()
             {
@@ -62,10 +78,17 @@ namespace Source.Application.CompositionRoots
             // windowFsm.Opened += (window) => logger.Log("Opened " + window);
             // windowFsm.Closed += (window) => logger.Log("Closed " + window);
 
+            TaskPresenterFactory taskPresenterFactory = new TaskPresenterFactory();
+
+            TaskViewFactory taskViewFactory = new TaskViewFactory(_configurationContainer.CreatedTaskViewPrefab,
+                windowFsm, logger,
+                taskService, taskPresenterFactory);
+
             MainMenuPresenter mainMenuPresenter =
                 new MainMenuPresenter(_mainMenuView, windowFsm, logger, taskService);
             MainTaskListPresenter mainTaskListPresenter =
-                new MainTaskListPresenter(_mainTaskListView, windowFsm, logger, taskService);
+                new MainTaskListPresenter(_mainTaskListView, windowFsm, logger, taskService,
+                    (data, container) => taskViewFactory.Create(data, container));
             TaskCreationPresenter taskCreationPresenter =
                 new TaskCreationPresenter(_taskCreationView, windowFsm, logger, taskService);
             TaskViewPresenter taskViewPresenter =

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using DeadMosquito.AndroidGoodies;
 using Modules.DAL.Implementation.Data;
 using Source.Common.WindowFsm;
@@ -7,7 +8,6 @@ using Source.Common.WindowFsm.Windows;
 using Source.Controllers.Api;
 using Source.Controllers.Api.Services;
 using Source.Controllers.Core.WindowFsms.Windows;
-using Source.Infrastructure.Api.Services;
 using Source.Presentation.Api;
 
 namespace Source.Controllers.Core.Presenters
@@ -97,8 +97,8 @@ namespace Source.Controllers.Core.Presenters
 
         private void UpdateTaskCounter(TaskData _)
         {
-            TaskData[] todayTasks = _taskService.GetTodayTasks();
-            _mainMenuView.SetTodayTasksText(_todayTasksPrefix + todayTasks.Length);
+            var todayTasks = _taskService.GetTodayTasks();
+            _mainMenuView.SetTodayTasksText(_todayTasksPrefix + todayTasks.Count());
         }
     }
 }

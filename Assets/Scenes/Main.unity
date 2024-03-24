@@ -1987,7 +1987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 317976.6}
+  m_AnchoredPosition: {x: 0, y: 490054.25}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &743725559
@@ -4555,6 +4555,7 @@ MonoBehaviour:
   _mainTaskListView: {fileID: 252956311}
   _taskCreationView: {fileID: 1814515108}
   _taskView: {fileID: 570361552}
+  _configurationContainer: {fileID: 11400000, guid: 22126f39e5bff6b49a49e544035cd53b, type: 2}
 --- !u!1 &1641337743
 GameObject:
   m_ObjectHideFlags: 0
