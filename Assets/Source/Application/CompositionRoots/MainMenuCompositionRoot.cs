@@ -13,6 +13,7 @@ using Source.Controllers.Core.Presenters;
 using Source.Controllers.Core.Services;
 using Source.Controllers.Core.WindowFsms;
 using Source.Controllers.Core.WindowFsms.Windows;
+using Source.Infrastructure.Core;
 using Source.Infrastructure.Core.Services;
 using Source.Infrastructure.Core.Services.DI;
 using Source.Presentation.Core;
@@ -27,7 +28,8 @@ namespace Source.Application.CompositionRoots
         [SerializeField] private MainTaskListView _mainTaskListView;
         [SerializeField] private TaskCreationView _taskCreationView;
         [SerializeField] private TaskView _taskView;
-
+        [SerializeField] private ConfigurationContainer _type;
+        
         private void Awake()
         {
             Initialize(new ServiceContainer());

@@ -1,5 +1,5 @@
-﻿using Source.Domain.Configs;
-using Source.Infrastructure.Api.Services.Providers;
+﻿using Source.Infrastructure.Api.Services.Providers;
+using Source.Presentation.Api;
 
 namespace Source.Infrastructure.Core.Services.Providers
 {
@@ -12,6 +12,6 @@ namespace Source.Infrastructure.Core.Services.Providers
             _configurationContainer = configurationContainer;
         }
 
-        public LevelViewSo LevelViewConfig => _configurationContainer.LevelViewConfig;
+        public ICreatedTaskView CreatedTaskViewPrefab => _configurationContainer.CreatedTaskViewPrefab;
     }
 }

@@ -5,7 +5,6 @@ using Source.Infrastructure.Api.GameFsm;
 using Source.Infrastructure.Api.Services;
 using Source.Infrastructure.Api.Services.Providers;
 using Source.Infrastructure.Core;
-using Source.Infrastructure.Core.Factories;
 using Source.Infrastructure.Core.Services;
 using Source.Infrastructure.Core.Services.DI;
 using Source.Infrastructure.Core.Services.Providers;
@@ -64,11 +63,8 @@ namespace Source.Application.GameFSM.States
             _services.RegisterAsSingle(resourceProvider);
 
 
-            LevelModelFactory levelModelFactory = new LevelModelFactory(configurationProvider, persistentDataService);
 
             _services.RegisterAsSingle<IFirebaseService>(firebaseService);
-            _services.RegisterAsSingle<ILevelModelFactory>(levelModelFactory);
-
             
             _services.RegisterAsSingle<IGameStateMachine>(_gameStateMachine);
             _services.RegisterAsSingle(coroutineRunner);

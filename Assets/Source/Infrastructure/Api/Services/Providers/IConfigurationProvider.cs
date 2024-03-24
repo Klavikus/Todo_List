@@ -1,9 +1,9 @@
-﻿using Source.Domain.Configs;
+﻿using Source.Presentation.Api;
 
 namespace Source.Infrastructure.Api.Services.Providers
 {
     public interface IConfigurationProvider
     {
-        LevelViewSo LevelViewConfig { get; }
+        ICreatedTaskView CreatedTaskViewPrefab { get; }
     }
 }

@@ -37,7 +37,6 @@ namespace Source.Controllers.Core.Presenters
             _mainTaskListView.CreateTasksButton.Clicked += OnCreateTasksButtonClicked;
 
             OnWindowOpened(_windowFsm.CurrentWindow);
-
             _windowFsm.Opened += OnWindowOpened;
 
             OnFocusedDateChanged(_taskService.FocusedDate);
