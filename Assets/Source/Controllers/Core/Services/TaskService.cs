@@ -28,7 +28,10 @@ namespace Source.Controllers.Core.Services
         {
             DateTime dateTimeNow = DateTime.Now;
 
-            return _repository.GetAll<TaskData>().Where(data => data.TargetDate.Date == dateTimeNow.Date);
+            return _repository
+                .GetAll<TaskData>()
+                .Where(data => data.TargetDate.Date == dateTimeNow.Date)
+                .OrderBy(data => data.IsCompleted);
         }
     }
 }

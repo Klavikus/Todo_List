@@ -86,6 +86,7 @@ namespace Source.Controllers.Core.Presenters
         {
             if (window is RootWindow)
             {
+                UpdateTaskCounter(null);
                 _mainMenuView.Show();
                 _windowFsm.ClearHistory();
             }

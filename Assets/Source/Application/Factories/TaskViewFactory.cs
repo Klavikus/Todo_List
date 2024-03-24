@@ -39,7 +39,7 @@ namespace Source.Application.Factories
         {
             CreatedTaskView view = Object.Instantiate(_viewPrefab, parentContainer);
 
-            IPresenter presenter = _taskPresenterFactory.Create(view, _windowFsm, _logger, _taskService);
+            IPresenter presenter = _taskPresenterFactory.Create(view, _windowFsm, _logger, _taskService, taskData);
             view.Construct(presenter);
 
             return view;

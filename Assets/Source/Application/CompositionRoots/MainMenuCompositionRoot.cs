@@ -58,6 +58,18 @@ namespace Source.Application.CompositionRoots
                 repository.Add<TaskData>(task);
             }
 
+            for (int i = 10; i < 20; i++)
+            {
+                TaskData task = new($"{nameof(TaskData)}_{i}")
+                {
+                    Name = $"Task №{i}",
+                    Description = $"This is test task",
+                    TargetDate = (DateTime.Now + TimeSpan.FromDays(2)).Date,
+                    IsCompleted = i % 2 == 0
+                };
+                repository.Add<TaskData>(task);
+            }
+
             await dataContext.Save();
 
             Dictionary<Type, IWindow> windows = new Dictionary<Type, IWindow>()

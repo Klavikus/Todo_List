@@ -1,4 +1,5 @@
-﻿using Source.Common.WindowFsm;
+﻿using Modules.DAL.Implementation.Data;
+using Source.Common.WindowFsm;
 using Source.Controllers.Api;
 using Source.Controllers.Api.Services;
 using Source.Presentation.Api;
@@ -7,6 +8,7 @@ namespace Source.Application.Factories
 {
     public interface ITaskPresenterFactory
     {
-        IPresenter Create(ICreatedTaskView view, IWindowFsm windowFsm, ILogger logger, ITaskService taskService);
+        IPresenter Create(ICreatedTaskView view, IWindowFsm windowFsm, ILogger logger, ITaskService taskService,
+            TaskData taskData);
     }
 }
