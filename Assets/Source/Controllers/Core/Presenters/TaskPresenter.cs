@@ -3,6 +3,7 @@ using Modules.DAL.Implementation.Data;
 using Source.Common.WindowFsm;
 using Source.Controllers.Api;
 using Source.Controllers.Api.Services;
+using Source.Controllers.Core.WindowFsms.Windows;
 using Source.Presentation.Api;
 using UnityEngine;
 using ILogger = Source.Controllers.Api.Services.ILogger;
@@ -33,12 +34,32 @@ namespace Source.Controllers.Core.Presenters
 
         public void Enable()
         {
+            _view.OpenViewButton.Initialize();
+            _view.Name.text = _taskData.Name;
+            _view.StatusImage.color = _taskData.IsCompleted ? Color.green : Color.red;
+            _view.OpenViewButton.Clicked += OnOpenViewButtonClicked;
+            _taskService.TaskChanged += OnTaskChanged;
+        }
+
+        private void OnTaskChanged(TaskData taskData)
+        {
+            if (taskData.Id != _taskData.Id)
+                return;
+            
             _view.Name.text = _taskData.Name;
             _view.StatusImage.color = _taskData.IsCompleted ? Color.green : Color.red;
         }
 
         public void Disable()
         {
+            _view.OpenViewButton.Clicked -= OnOpenViewButtonClicked;
+            _taskService.TaskChanged -= OnTaskChanged;
+        }
+
+        private void OnOpenViewButtonClicked()
+        {
+            _taskService.FocusTask(_taskData);
+            _windowFsm.OpenWindow<TaskWindow>();
         }
     }
 }

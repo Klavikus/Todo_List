@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using Modules.DAL.Implementation.Data;
 using Source.Common.WindowFsm;
@@ -18,16 +19,17 @@ namespace Source.Controllers.Core.Presenters
         private readonly IWindowFsm _windowFsm;
         private readonly ILogger _logger;
         private readonly ITaskService _taskService;
-        private readonly Func<TaskData, Transform, ICreatedTaskView> _createdTaskViewFactory;
+        private readonly Func<TaskData, Transform, ICreatedTaskView> _createdTaskViewStrategy;
 
         public MainTaskListPresenter(IMainTaskListView mainTaskListView, IWindowFsm windowFsm, ILogger logger,
-            ITaskService taskService, Func<TaskData, Transform, ICreatedTaskView> createdTaskViewFactory)
+            ITaskService taskService, Func<TaskData, Transform, ICreatedTaskView> createdTaskViewStrategy)
         {
             _mainTaskListView = mainTaskListView ?? throw new ArgumentNullException(nameof(mainTaskListView));
             _windowFsm = windowFsm ?? throw new ArgumentNullException(nameof(windowFsm));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _taskService = taskService ?? throw new ArgumentNullException(nameof(taskService));
-            _createdTaskViewFactory = createdTaskViewFactory;
+            _createdTaskViewStrategy =
+                createdTaskViewStrategy ?? throw new ArgumentNullException(nameof(createdTaskViewStrategy));
         }
 
         public void Enable()
@@ -44,6 +46,7 @@ namespace Source.Controllers.Core.Presenters
 
             OnFocusedDateChanged(_taskService.FocusedDate);
             _taskService.FocusedDateChanged += OnFocusedDateChanged;
+            _taskService.TaskChanged += (_) => RebuildCreatedTasksList();
         }
 
         public void Disable()
@@ -76,14 +79,14 @@ namespace Source.Controllers.Core.Presenters
 
         private void RebuildCreatedTasksList()
         {
-            var createdTasks = _taskService.GetTodayTasks();
+            IEnumerable<TaskData> createdTasks = _taskService.GetTodayTasks();
 
-            foreach (ITaskCreationView taskCreationView in _mainTaskListView.CreatedTaskContainer
-                         .GetComponentsInChildren<ITaskCreationView>())
+            foreach (ICreatedTaskView taskCreationView in _mainTaskListView.CreatedTaskContainer
+                         .GetComponentsInChildren<ICreatedTaskView>(true))
                 taskCreationView.Destroy();
 
             foreach (TaskData taskData in createdTasks)
-                _createdTaskViewFactory.Invoke(taskData, _mainTaskListView.CreatedTaskContainer);
+                _createdTaskViewStrategy.Invoke(taskData, _mainTaskListView.CreatedTaskContainer);
         }
     }
 }

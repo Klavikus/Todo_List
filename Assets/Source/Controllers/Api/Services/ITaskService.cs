@@ -8,8 +8,13 @@ namespace Source.Controllers.Api.Services
     {
         event Action<TaskData> TaskCreated;
         event Action<DateTime> FocusedDateChanged;
+        event Action<TaskData> TaskChanged;
         DateTime FocusedDate { get; }
+        TaskData FocusedTask { get; }
         IEnumerable<TaskData> GetTodayTasks();
         void FocusDate(DateTime dateTime);
+        void FocusTask(TaskData taskData);
+        void CompleteTask();
+        void ResetTask();
     }
 }

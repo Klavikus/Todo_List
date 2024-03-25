@@ -13,13 +13,15 @@ namespace Source.Presentation.Core
         [SerializeField] private TMP_Text _nameText;
         [SerializeField] private ActionButton _exitButton;
         [SerializeField] private ActionButton _completeButton;
-        [SerializeField] private TMP_InputField _taskDescriptionInputField;
+        [SerializeField] private TMP_Text _taskDescriptionText;
+        [SerializeField] private TMP_Text _completionText;
 
-        public override void OnAfterConstruct()
-        {
-            _exitButton.Initialize();
-            _completeButton.Initialize();
-        }
+        public ActionButton ExitButton => _exitButton;
+        public ActionButton CompleteButton => _completeButton;
+        public TMP_Text CurrentDateText => _currentDateText;
+        public TMP_Text NameText => _nameText;
+        public TMP_Text TaskDescriptionText => _taskDescriptionText;
+        public TMP_Text CompletionText => _completionText;
 
         public void Hide() =>
             _canvas.enabled = false;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using DeadMosquito.AndroidGoodies;
@@ -20,8 +21,6 @@ namespace Source.Controllers.Core.Presenters
         private readonly ITaskService _taskService;
         private readonly string _todayTasksPrefix = "Задач на сегодня: ";
 
-        private DateTime _currentDateTime;
-
         public MainMenuPresenter(
             IMainMenuView mainMenuView,
             IWindowFsm windowFsm,
@@ -36,8 +35,6 @@ namespace Source.Controllers.Core.Presenters
 
         public void Enable()
         {
-            _currentDateTime = DateTime.Now;
-
             _mainMenuView.ViewTasksButton.Initialize();
             _mainMenuView.CreateTasksButton.Initialize();
 
@@ -64,23 +61,10 @@ namespace Source.Controllers.Core.Presenters
         private void OnViewTasksButtonClicked()
         {
             _windowFsm.OpenWindow<MainTaskListWindow>();
-
-            // AGDateTimePicker.ShowDatePicker(
-            //     _currentDateTime.Year,
-            //     _currentDateTime.Month,
-            //     _currentDateTime.Day,
-            //     OnDatePicked,
-            //     OnDatePickCanceled);
         }
 
         private void OnCreateTasksButtonClicked() =>
             _windowFsm.OpenWindow<TaskCreationWindow>();
-
-        private void OnDatePicked(int year, int month, int day) =>
-            _mainMenuView.SetCurrentDateText(new DateTime(year, month, day).ToString(CultureInfo.InvariantCulture));
-
-        private void OnDatePickCanceled() =>
-            _logger.LogWarning($"{nameof(MainMenuPresenter)}: {nameof(OnDatePickCanceled)}");
 
         private void OnWindowOpened(IWindow window)
         {
@@ -98,7 +82,7 @@ namespace Source.Controllers.Core.Presenters
 
         private void UpdateTaskCounter(TaskData _)
         {
-            var todayTasks = _taskService.GetTodayTasks();
+            IEnumerable<TaskData> todayTasks = _taskService.GetTodayTasks();
             _mainMenuView.SetTodayTasksText(_todayTasksPrefix + todayTasks.Count());
         }
     }

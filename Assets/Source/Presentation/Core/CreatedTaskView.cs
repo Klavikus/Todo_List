@@ -1,3 +1,4 @@
+using Source.Common.Components.Implementations.Buttons;
 using Source.Presentation.Api;
 using TMPro;
 using UnityEngine;
@@ -9,5 +10,9 @@ namespace Source.Presentation.Core
     {
         [field: SerializeField] public TMP_Text Name { get; private set; }
         [field: SerializeField] public Image StatusImage { get; private set; }
+        [field: SerializeField] public ActionButton OpenViewButton { get; private set; }
+
+        public void Destroy() =>
+            Object.Destroy(gameObject);
     }
 }
