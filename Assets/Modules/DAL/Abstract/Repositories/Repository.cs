@@ -46,5 +46,13 @@ namespace Modules.DAL.Abstract.Repositories
 
         public UniTask Load() =>
             _baseDataContext.Load();
+
+        public void Delete(Func<IEntity, bool> predicate)
+        {
+            IEntity[] candidates = Entities.Where(predicate).ToArray();
+
+            foreach (IEntity candidate in candidates) 
+                Entities.Remove(candidate);
+        }
     }
 }

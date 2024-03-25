@@ -42,17 +42,19 @@ namespace Source.Controllers.Core.Presenters
             _mainTaskListView.SelectDateButton.Initialize();
             _mainTaskListView.CreateTasksButton.Initialize();
             _mainTaskListView.ExitTasksButton.Initialize();
+            _mainTaskListView.DeleteCompletedTasksButton.Initialize();
 
             _mainTaskListView.ExitTasksButton.Clicked += OnExitTasksButtonClicked;
             _mainTaskListView.CreateTasksButton.Clicked += OnCreateTasksButtonClicked;
             _mainTaskListView.SelectDateButton.Clicked += OnSelectDateButtonClicked;
+            _mainTaskListView.DeleteCompletedTasksButton.Clicked += OnDeleteCompletedTasksButtonClicked;
 
             OnWindowOpened(_windowFsm.CurrentWindow);
             _windowFsm.Opened += OnWindowOpened;
 
             OnFocusedDateChanged(_taskService.FocusedDate);
             _taskService.FocusedDateChanged += OnFocusedDateChanged;
-            _taskService.TaskChanged += (_) => RebuildCreatedTasksList(_taskService.FocusedDate);
+            _taskService.TasksChanged += () => RebuildCreatedTasksList(_taskService.FocusedDate);
         }
 
         public void Disable()
@@ -60,6 +62,7 @@ namespace Source.Controllers.Core.Presenters
             _mainTaskListView.ExitTasksButton.Clicked -= OnExitTasksButtonClicked;
             _mainTaskListView.CreateTasksButton.Clicked -= OnCreateTasksButtonClicked;
             _mainTaskListView.SelectDateButton.Clicked -= OnSelectDateButtonClicked;
+            _mainTaskListView.DeleteCompletedTasksButton.Clicked -= OnDeleteCompletedTasksButtonClicked;
             _windowFsm.Opened -= OnWindowOpened;
             _taskService.FocusedDateChanged -= OnFocusedDateChanged;
         }
@@ -105,6 +108,9 @@ namespace Source.Controllers.Core.Presenters
                 OnDatePicked,
                 OnDatePickCanceled);
         }
+
+        private void OnDeleteCompletedTasksButtonClicked() =>
+            _taskService.DeleteCompletedTasks(_taskService.FocusedDate);
 
         private void OnDatePicked(int year, int month, int day) =>
             _taskService.FocusDate(new DateTime(year, month, day).Date);

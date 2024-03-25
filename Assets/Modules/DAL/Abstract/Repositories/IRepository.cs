@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Modules.DAL.Abstract.Data;
 
@@ -13,5 +14,6 @@ namespace Modules.DAL.Abstract.Repositories
         void Clear();
         UniTask Save();
         UniTask Load();
+        void Delete(Func<IEntity, bool> predicate);
     }
 }

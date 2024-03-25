@@ -20,5 +20,7 @@ namespace Source.Controllers.Api.Services
         IEnumerable<TaskData> GetTasks(DateTime dateTime);
         IEnumerable<TaskData> GetFocusedDateTasks();
         void DeleteTask(TaskData taskData);
+        void DeleteCompletedTasks(DateTime dateTime);
+        event Action TasksChanged;
     }
 }

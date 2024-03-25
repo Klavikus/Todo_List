@@ -11,6 +11,7 @@ namespace Source.Presentation.Api
         ActionButton CreateTasksButton { get; }
         ActionButton ExitTasksButton { get; }
         Transform CreatedTaskContainer { get; }
+        ActionButton DeleteCompletedTasksButton { get; }
         void SetSelectedDateText(string text);
     }
 }

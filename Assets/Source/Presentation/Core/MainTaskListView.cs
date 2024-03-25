@@ -13,11 +13,13 @@ namespace Source.Presentation.Core
         [SerializeField] private ActionButton _selectDateButton;
         [SerializeField] private ActionButton _createTasksButton;
         [SerializeField] private ActionButton _exitTasksButton;
+        [SerializeField] private ActionButton _deleteCompletedTasksButton;
         [SerializeField] private Transform _createdTaskContainer;
 
         public ActionButton SelectDateButton => _selectDateButton;
         public ActionButton CreateTasksButton => _createTasksButton;
         public ActionButton ExitTasksButton => _exitTasksButton;
+        public ActionButton DeleteCompletedTasksButton => _deleteCompletedTasksButton;
         public Transform CreatedTaskContainer => _createdTaskContainer;
 
         public void Show() =>

@@ -85,5 +85,11 @@ namespace Modules.DAL.Implementation.Repositories
             if (_reposByTypes.TryGetValue(typeof(T), out IRepository repository))
                 repository.Delete(entity);
         }
+
+        public void Remove<T>(Func<IEntity, bool> predicate) where T : class, IEntity
+        {
+            if (_reposByTypes.TryGetValue(typeof(T), out IRepository repository))
+                repository.Delete(predicate);
+        }
     }
 }

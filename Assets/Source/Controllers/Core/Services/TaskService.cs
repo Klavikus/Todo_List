@@ -21,6 +21,7 @@ namespace Source.Controllers.Core.Services
         public event Action<TaskData> TaskCreated;
         public event Action<TaskData> TaskChanged;
         public event Action<DateTime> FocusedDateChanged;
+        public event Action TasksChanged;
 
         public DateTime FocusedDate { get; private set; }
         public TaskData FocusedTask => _taskData;
@@ -66,6 +67,7 @@ namespace Source.Controllers.Core.Services
             _taskData = taskData;
             TaskCreated?.Invoke(_taskData);
             TaskChanged?.Invoke(_taskData);
+            TasksChanged?.Invoke();
         }
 
         public IEnumerable<TaskData> GetTasks(DateTime dateTime) =>
@@ -91,8 +93,23 @@ namespace Source.Controllers.Core.Services
         {
             _repository.Remove(taskData);
             await _repository.Save();
-            TaskCreated?.Invoke(_taskData);
-            TaskChanged?.Invoke(_taskData);
+            TasksChanged?.Invoke();
+        }
+
+        public async void DeleteCompletedTasks(DateTime dateTime)
+        {
+            _repository.Remove<TaskData>((entity) =>
+            {
+                TaskData taskData = entity as TaskData;
+
+                if (taskData == null)
+                    return false;
+
+                return taskData.TargetDate.Date == dateTime.Date && taskData.IsCompleted;
+            });
+
+            await _repository.Save();
+            TasksChanged?.Invoke();
         }
     }
 }
