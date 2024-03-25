@@ -13,11 +13,13 @@ namespace Source.Presentation.Core
         [SerializeField] private TMP_Text _nameText;
         [SerializeField] private ActionButton _exitButton;
         [SerializeField] private ActionButton _completeButton;
+        [SerializeField] private ActionButton _deleteButton;
         [SerializeField] private TMP_Text _taskDescriptionText;
         [SerializeField] private TMP_Text _completionText;
 
         public ActionButton ExitButton => _exitButton;
         public ActionButton CompleteButton => _completeButton;
+        public ActionButton DeleteButton => _deleteButton;
         public TMP_Text CurrentDateText => _currentDateText;
         public TMP_Text NameText => _nameText;
         public TMP_Text TaskDescriptionText => _taskDescriptionText;

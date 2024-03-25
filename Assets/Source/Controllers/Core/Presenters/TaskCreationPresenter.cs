@@ -1,4 +1,5 @@
 ﻿using System;
+using DeadMosquito.AndroidGoodies;
 using Source.Common.WindowFsm;
 using Source.Common.WindowFsm.Windows;
 using Source.Controllers.Api;
@@ -15,6 +16,8 @@ namespace Source.Controllers.Core.Presenters
         private readonly ILogger _logger;
         private readonly ITaskService _taskService;
 
+        private DateTime _currentDateTime;
+
         public TaskCreationPresenter(
             ITaskCreationView view,
             IWindowFsm windowFsm,
@@ -29,6 +32,8 @@ namespace Source.Controllers.Core.Presenters
 
         public void Enable()
         {
+            _currentDateTime = DateTime.Now.Date;
+
             _view.ApplyTaskButton.Initialize();
             _view.ExitTasksButton.Initialize();
             _view.SelectDateButton.Initialize();
@@ -36,13 +41,19 @@ namespace Source.Controllers.Core.Presenters
             OnWindowOpened(_windowFsm.CurrentWindow);
             _windowFsm.Opened += OnWindowOpened;
 
+            _view.ApplyTaskButton.Clicked += OnApplyTasksButtonClicked;
             _view.ExitTasksButton.Clicked += OnExitTasksButtonClicked;
+            _view.SelectDateButton.Clicked += OnSelectDateButtonClicked;
+            _taskService.FocusedDateChanged += OnFocusedDateChanged;
         }
 
         public void Disable()
         {
             _windowFsm.Opened -= OnWindowOpened;
+            _view.ApplyTaskButton.Clicked -= OnApplyTasksButtonClicked;
             _view.ExitTasksButton.Clicked -= OnExitTasksButtonClicked;
+            _view.SelectDateButton.Clicked -= OnSelectDateButtonClicked;
+            _taskService.FocusedDateChanged -= OnFocusedDateChanged;
         }
 
         private void OnWindowOpened(IWindow window)
@@ -55,5 +66,30 @@ namespace Source.Controllers.Core.Presenters
 
         private void OnExitTasksButtonClicked() =>
             _windowFsm.Close<TaskCreationWindow>();
+
+        private void OnApplyTasksButtonClicked()
+        {
+            _taskService.CreateTask(_view.TaskNameInputField.text, _view.TaskDescriptionInputField.text);
+            _windowFsm.Close<TaskCreationWindow>();
+        }
+
+        private void OnSelectDateButtonClicked()
+        {
+            AGDateTimePicker.ShowDatePicker(
+                _currentDateTime.Year,
+                _currentDateTime.Month,
+                _currentDateTime.Day,
+                OnDatePicked,
+                OnDatePickCanceled);
+        }
+
+        private void OnDatePicked(int year, int month, int day) =>
+            _taskService.FocusDate(new DateTime(year, month, day).Date);
+
+        private void OnDatePickCanceled() =>
+            _logger.LogWarning($"{nameof(MainMenuPresenter)}: {nameof(OnDatePickCanceled)}");
+
+        private void OnFocusedDateChanged(DateTime dateTime) =>
+            _view.SetSelectedDateText(dateTime.ToShortDateString());
     }
 }

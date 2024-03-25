@@ -46,6 +46,7 @@ namespace Source.Controllers.Core.Presenters
             _mainMenuView.ViewTasksButton.Clicked += OnViewTasksButtonClicked;
 
             _taskService.TaskCreated += UpdateTaskCounter;
+            _taskService.FocusedDateChanged += OnFocusedDateChanged;
 
             _taskService.FocusDate(DateTime.Now.Date);
         }
@@ -82,8 +83,14 @@ namespace Source.Controllers.Core.Presenters
 
         private void UpdateTaskCounter(TaskData _)
         {
-            IEnumerable<TaskData> todayTasks = _taskService.GetTodayTasks();
+            IEnumerable<TaskData> todayTasks = _taskService.GetFocusedDateTasks();
             _mainMenuView.SetTodayTasksText(_todayTasksPrefix + todayTasks.Count());
+        }
+
+        private void OnFocusedDateChanged(DateTime dateTime)
+        {
+            UpdateTaskCounter(null);
+            _mainMenuView.SetCurrentDateText(dateTime.ToShortDateString());
         }
     }
 }

@@ -16,5 +16,9 @@ namespace Source.Controllers.Api.Services
         void FocusTask(TaskData taskData);
         void CompleteTask();
         void ResetTask();
+        void CreateTask(string name, string description);
+        IEnumerable<TaskData> GetTasks(DateTime dateTime);
+        IEnumerable<TaskData> GetFocusedDateTasks();
+        void DeleteTask(TaskData taskData);
     }
 }

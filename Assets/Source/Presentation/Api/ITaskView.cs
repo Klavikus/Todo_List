@@ -13,5 +13,6 @@ namespace Source.Presentation.Api
         TMP_Text NameText { get; }
         TMP_Text CompletionText { get; }
         TMP_Text TaskDescriptionText { get; }
+        ActionButton DeleteButton { get; }
     }
 }

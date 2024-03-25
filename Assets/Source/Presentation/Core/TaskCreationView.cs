@@ -29,5 +29,8 @@ namespace Source.Presentation.Core
 
         public void Destroy() =>
             Object.Destroy(gameObject);
+
+        public void SetSelectedDateText(string date) =>
+            _selectedDateText.text = date;
     }
 }

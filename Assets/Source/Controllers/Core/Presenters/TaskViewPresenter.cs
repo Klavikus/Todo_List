@@ -1,5 +1,4 @@
 ﻿using System;
-using JetBrains.Annotations;
 using Modules.DAL.Implementation.Data;
 using Source.Common.WindowFsm;
 using Source.Common.WindowFsm.Windows;
@@ -18,7 +17,7 @@ namespace Source.Controllers.Core.Presenters
         private readonly ITaskService _taskService;
 
         public TaskViewPresenter(ITaskView view, IWindowFsm windowFsm, ILogger logger,
-            [NotNull] ITaskService taskService)
+            ITaskService taskService)
         {
             _view = view ?? throw new ArgumentNullException(nameof(view));
             _windowFsm = windowFsm ?? throw new ArgumentNullException(nameof(windowFsm));
@@ -30,9 +29,11 @@ namespace Source.Controllers.Core.Presenters
         {
             _view.ExitButton.Initialize();
             _view.CompleteButton.Initialize();
+            _view.DeleteButton.Initialize();
 
             _view.ExitButton.Clicked += OnExitButtonClicked;
             _view.CompleteButton.Clicked += OnCompleteButtonClicked;
+            _view.DeleteButton.Clicked += OnDeleteButtonClicked;
 
             OnWindowOpened(_windowFsm.CurrentWindow);
 
@@ -88,5 +89,11 @@ namespace Source.Controllers.Core.Presenters
 
         private void OnTaskChanged(TaskData taskData) =>
             UpdateView();
+
+        private void OnDeleteButtonClicked()
+        {
+            _taskService.DeleteTask(_taskService.FocusedTask);
+            _windowFsm.Close<TaskWindow>();
+        }
     }
 }

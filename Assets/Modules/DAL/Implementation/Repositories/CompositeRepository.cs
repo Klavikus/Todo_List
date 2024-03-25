@@ -42,6 +42,7 @@ namespace Modules.DAL.Implementation.Repositories
             if (_reposByTypes.TryGetValue(typeof(T), out IRepository repository))
             {
                 List<IEntity> a = repository.GetAll();
+
                 return repository.GetAll().Cast<T>().ToList();
             }
 
@@ -77,6 +78,12 @@ namespace Modules.DAL.Implementation.Repositories
         {
             foreach (IRepository repository in _reposByTypes.Values)
                 repository.Clear();
+        }
+
+        public void Remove<T>(T entity) where T : class, IEntity
+        {
+            if (_reposByTypes.TryGetValue(typeof(T), out IRepository repository))
+                repository.Delete(entity);
         }
     }
 }

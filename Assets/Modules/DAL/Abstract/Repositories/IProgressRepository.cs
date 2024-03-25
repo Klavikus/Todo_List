@@ -17,5 +17,6 @@ namespace Modules.DAL.Abstract.Repositories
         UniTask Save();
         void CopyFrom(IProgressRepository progressRepository);
         void Clear();
+        void Remove<T>(T entity) where T : class, IEntity;
     }
 }
