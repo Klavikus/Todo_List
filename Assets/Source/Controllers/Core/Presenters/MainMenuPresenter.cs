@@ -15,19 +15,19 @@ namespace Source.Controllers.Core.Presenters
 {
     public class MainMenuPresenter : IPresenter
     {
-        private readonly IMainMenuView _mainMenuView;
+        private readonly IMainMenuView _view;
         private readonly IWindowFsm _windowFsm;
         private readonly ILogger _logger;
         private readonly ITaskService _taskService;
-        private readonly string _todayTasksPrefix = "Задач на сегодня: ";
+        private readonly string _todayTasksPrefix = "Today tasks: ";
 
         public MainMenuPresenter(
-            IMainMenuView mainMenuView,
+            IMainMenuView view,
             IWindowFsm windowFsm,
             ILogger logger,
             ITaskService taskService)
         {
-            _mainMenuView = mainMenuView ?? throw new ArgumentNullException(nameof(mainMenuView));
+            _view = view ?? throw new ArgumentNullException(nameof(view));
             _windowFsm = windowFsm ?? throw new ArgumentNullException(nameof(windowFsm));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _taskService = taskService ?? throw new ArgumentNullException(nameof(taskService));
@@ -35,17 +35,17 @@ namespace Source.Controllers.Core.Presenters
 
         public void Enable()
         {
-            _mainMenuView.ViewTasksButton.Initialize();
-            _mainMenuView.CreateTasksButton.Initialize();
+            _view.ViewTasksButton.Initialize();
+            _view.CreateTasksButton.Initialize();
 
             OnWindowOpened(_windowFsm.CurrentWindow);
             _windowFsm.Opened += OnWindowOpened;
 
-            _mainMenuView.SetCurrentDateText(DateTime.Now.ToShortDateString());
-            _mainMenuView.CreateTasksButton.Clicked += OnCreateTasksButtonClicked;
-            _mainMenuView.ViewTasksButton.Clicked += OnViewTasksButtonClicked;
+            UpdateTodayTaskCounter(null);
+            _view.CreateTasksButton.Clicked += OnCreateTasksButtonClicked;
+            _view.ViewTasksButton.Clicked += OnViewTasksButtonClicked;
 
-            _taskService.TaskCreated += UpdateTaskCounter;
+            _taskService.TaskCreated += UpdateTodayTaskCounter;
             _taskService.FocusedDateChanged += OnFocusedDateChanged;
 
             _taskService.FocusDate(DateTime.Now.Date);
@@ -54,9 +54,10 @@ namespace Source.Controllers.Core.Presenters
         public void Disable()
         {
             _windowFsm.Opened -= OnWindowOpened;
-            _mainMenuView.CreateTasksButton.Clicked -= OnCreateTasksButtonClicked;
-            _mainMenuView.ViewTasksButton.Clicked -= OnViewTasksButtonClicked;
-            _taskService.TaskCreated -= UpdateTaskCounter;
+            _view.CreateTasksButton.Clicked -= OnCreateTasksButtonClicked;
+            _view.ViewTasksButton.Clicked -= OnViewTasksButtonClicked;
+            _taskService.TaskCreated -= UpdateTodayTaskCounter;
+            _taskService.FocusedDateChanged -= OnFocusedDateChanged;
         }
 
         private void OnViewTasksButtonClicked()
@@ -71,26 +72,42 @@ namespace Source.Controllers.Core.Presenters
         {
             if (window is RootWindow)
             {
-                UpdateTaskCounter(null);
-                _mainMenuView.Show();
+                UpdateTodayTaskCounter(null);
+                UpdateAllTaskCounter();
+                _view.Show();
                 _windowFsm.ClearHistory();
             }
             else
             {
-                _mainMenuView.Hide();
+                _view.Hide();
             }
         }
 
-        private void UpdateTaskCounter(TaskData _)
+        private void UpdateAllTaskCounter()
         {
-            IEnumerable<TaskData> todayTasks = _taskService.GetFocusedDateTasks();
-            _mainMenuView.SetTodayTasksText(_todayTasksPrefix + todayTasks.Count());
+            TaskData[] tasks = _taskService.GetAllTasks().ToArray();
+
+            _view.AllTasksText.text = $"Tasks: {tasks.Length}";
+            _view.AllCompletedText.text = $"Completed: {tasks.Count(task => task.IsCompleted)}";
+            _view.AllInProgressText.text = $"In progress: {tasks.Count(task => task.IsCompleted == false)}";
+        }
+
+        private void UpdateTodayTaskCounter(TaskData _)
+        {
+            TaskData[] todayTasks = _taskService.GetTodayTasks().ToArray();
+
+            _view.CurrentDateText.text = DateTime.Now.ToShortDateString();
+            _view.TodayTasksText.text = _todayTasksPrefix + todayTasks.Length;
+            _view.TodayCompletedTasksText.text = $"Completed: {todayTasks.Count(task => task.IsCompleted)}";
+            _view.TodayInProgressTasksText.text = $"In progress: {todayTasks.Count(task => task.IsCompleted == false)}";
         }
 
         private void OnFocusedDateChanged(DateTime dateTime)
         {
-            UpdateTaskCounter(null);
-            _mainMenuView.SetCurrentDateText(dateTime.ToShortDateString());
+            if (dateTime.Date != DateTime.Now.Date)
+                return;
+
+            UpdateTodayTaskCounter(null);
         }
     }
 }

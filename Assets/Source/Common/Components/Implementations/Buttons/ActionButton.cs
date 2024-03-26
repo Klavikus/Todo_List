@@ -8,6 +8,8 @@ namespace Source.Common.Components.Implementations.Buttons
     public class ActionButton : MonoBehaviour
     {
         [SerializeField] private Button _button;
+        [SerializeField] private bool _upAndDown;
+
         [SerializeField] private TweenActionBaseComponent _actionComponent;
 
         public event Action Clicked;
@@ -34,6 +36,16 @@ namespace Source.Common.Components.Implementations.Buttons
             _isInteractionLocked = true;
 
             await _actionComponent.PlayForward();
+
+            if (_upAndDown == false)
+            {
+                _isInteractionLocked = false;
+
+                Clicked?.Invoke();
+                _actionComponent.SetBackwardState();
+                return;
+            }
+
             await _actionComponent.PlayBackward();
 
             _isInteractionLocked = false;

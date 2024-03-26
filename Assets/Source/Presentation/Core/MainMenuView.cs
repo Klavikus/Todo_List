@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using Source.Common.Components.Implementations.Buttons;
-using Source.Controllers.Api;
+﻿using Source.Common.Components.Implementations.Buttons;
 using Source.Presentation.Api;
 using TMPro;
 using UnityEngine;
@@ -11,23 +9,20 @@ namespace Source.Presentation.Core
     {
         [SerializeField] private Canvas _canvas;
 
-        [SerializeField] private TMP_Text _currentDateText;
-        [SerializeField] private TMP_Text _todayTasksText;
-        [SerializeField] private ActionButton _viewTasksButton;
-        [SerializeField] private ActionButton _createTasksButton;
-
-        public ActionButton ViewTasksButton => _viewTasksButton;
-        public ActionButton CreateTasksButton => _createTasksButton;
+        [field: SerializeField] public TMP_Text AllTasksText { get; private set; }
+        [field: SerializeField] public TMP_Text AllCompletedText { get; private set; }
+        [field: SerializeField] public TMP_Text AllInProgressText { get; private set; }
+        [field: SerializeField] public TMP_Text CurrentDateText { get; private set; }
+        [field: SerializeField] public TMP_Text TodayTasksText { get; private set; }
+        [field: SerializeField] public TMP_Text TodayCompletedTasksText { get; private set; }
+        [field: SerializeField] public TMP_Text TodayInProgressTasksText { get; private set; }
+        [field: SerializeField] public ActionButton ViewTasksButton { get; private set; }
+        [field: SerializeField] public ActionButton CreateTasksButton { get; private set; }
 
         public void Show() =>
             _canvas.enabled = true;
 
         public void Hide() =>
             _canvas.enabled = false;
-
-        public void SetCurrentDateText(string text) =>
-            _currentDateText.text = text; 
-        public void SetTodayTasksText(string text) =>
-            _todayTasksText.text = text;
     }
 }

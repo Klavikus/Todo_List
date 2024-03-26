@@ -55,6 +55,7 @@ namespace Source.Controllers.Core.Presenters
             OnFocusedDateChanged(_taskService.FocusedDate);
             _taskService.FocusedDateChanged += OnFocusedDateChanged;
             _taskService.TasksChanged += () => RebuildCreatedTasksList(_taskService.FocusedDate);
+            _taskService.TaskChanged += (_) => RebuildCreatedTasksList(_taskService.FocusedDate);
         }
 
         public void Disable()

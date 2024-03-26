@@ -22,5 +22,6 @@ namespace Source.Controllers.Api.Services
         void DeleteTask(TaskData taskData);
         void DeleteCompletedTasks(DateTime dateTime);
         event Action TasksChanged;
+        IEnumerable<TaskData> GetAllTasks();
     }
 }

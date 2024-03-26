@@ -79,6 +79,9 @@ namespace Source.Controllers.Core.Services
         public IEnumerable<TaskData> GetFocusedDateTasks() =>
             GetTasks(FocusedDate);
 
+        public IEnumerable<TaskData> GetAllTasks() =>
+            _repository.GetAll<TaskData>();
+
         public IEnumerable<TaskData> GetTodayTasks()
         {
             DateTime dateTimeNow = DateTime.Now;

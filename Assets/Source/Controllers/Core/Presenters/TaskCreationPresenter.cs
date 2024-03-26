@@ -39,6 +39,7 @@ namespace Source.Controllers.Core.Presenters
             _view.SelectDateButton.Initialize();
 
             OnWindowOpened(_windowFsm.CurrentWindow);
+            OnFocusedDateChanged(_taskService.FocusedDate);
             _windowFsm.Opened += OnWindowOpened;
 
             _view.ApplyTaskButton.Clicked += OnApplyTasksButtonClicked;
