@@ -11,8 +11,9 @@ namespace Source.Presentation.Api
         ActionButton CompleteButton { get; }
         TMP_Text CurrentDateText { get; }
         TMP_Text NameText { get; }
-        TMP_Text CompletionText { get; }
         TMP_Text TaskDescriptionText { get; }
+        TMP_Text CompletionText { get; }
         ActionButton DeleteButton { get; }
+        void SetCompletionStatus(bool isCompleted);
     }
 }

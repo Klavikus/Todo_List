@@ -2,6 +2,7 @@
 using Source.Presentation.Api;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Source.Presentation.Core
 {
@@ -16,19 +17,25 @@ namespace Source.Presentation.Core
         [SerializeField] private ActionButton _deleteButton;
         [SerializeField] private TMP_Text _taskDescriptionText;
         [SerializeField] private TMP_Text _completionText;
+        [SerializeField] private Image _completionIcon;
+        [SerializeField] private Sprite _completeSprite;
+        [SerializeField] private Sprite _pendingSprite;
 
         public ActionButton ExitButton => _exitButton;
         public ActionButton CompleteButton => _completeButton;
+        public TMP_Text CompletionText => _completionText;
         public ActionButton DeleteButton => _deleteButton;
         public TMP_Text CurrentDateText => _currentDateText;
         public TMP_Text NameText => _nameText;
         public TMP_Text TaskDescriptionText => _taskDescriptionText;
-        public TMP_Text CompletionText => _completionText;
 
         public void Hide() =>
             _canvas.enabled = false;
 
         public void Show() =>
             _canvas.enabled = true;
+
+        public void SetCompletionStatus(bool isCompleted) =>
+            _completionIcon.sprite = isCompleted ? _completeSprite : _pendingSprite;
     }
 }
