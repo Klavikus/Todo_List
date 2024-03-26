@@ -85,6 +85,7 @@ namespace Source.Controllers.Core.Presenters
             _view.NameText.text = taskData.Name;
             _view.TaskDescriptionText.text = taskData.Description;
             _view.CompletionText.text = taskData.IsCompleted ? "Reset" : "Complete";
+            _view.SetCompletionStatus(taskData.IsCompleted);
         }
 
         private void OnTaskChanged(TaskData taskData) =>

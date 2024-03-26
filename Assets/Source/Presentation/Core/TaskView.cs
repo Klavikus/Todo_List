@@ -35,7 +35,19 @@ namespace Source.Presentation.Core
         public void Show() =>
             _canvas.enabled = true;
 
-        public void SetCompletionStatus(bool isCompleted) =>
+        public void SetCompletionStatus(bool isCompleted)
+        {
             _completionIcon.sprite = isCompleted ? _completeSprite : _pendingSprite;
+            _completionIcon.color = isCompleted ? HexToColor("00FF38") : HexToColor("FFAE00");
+        }
+
+        private Color32 HexToColor(string hex)
+        {
+            byte r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+            byte g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+            byte b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+
+            return new Color32(r, g, b, 255); // Альфа устанавливаем в максимальное значение, т.е. 255
+        }
     }
 }

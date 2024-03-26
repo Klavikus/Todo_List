@@ -55,6 +55,12 @@ namespace Source.Controllers.Core.Services
 
         public async void CreateTask(string name, string description)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                name = "Unnamed";
+
+            if (string.IsNullOrWhiteSpace(description))
+                description = "Nothing";
+
             TaskData taskData = new TaskData(Guid.NewGuid().ToString())
             {
                 Name = name,
@@ -62,6 +68,7 @@ namespace Source.Controllers.Core.Services
                 TargetDate = FocusedDate,
                 IsCompleted = false
             };
+            
             _repository.Add<TaskData>(taskData);
             await _repository.Save();
             _taskData = taskData;
