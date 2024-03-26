@@ -44,7 +44,36 @@ namespace Source.Application.CompositionRoots
             IProgressRepository repository = new CompositeRepository(dataContext, dataTypes);
 
             await dataContext.Load();
+
             // dataContext.Clear();
+            //
+            // TaskData task = new($"{nameof(TaskData)}_1")
+            // {
+            //     Name = $"Eat",
+            //     Description = $"This is test task",
+            //     TargetDate = DateTime.Now.Date,
+            //     IsCompleted = false
+            // };
+            // repository.Add<TaskData>(task);
+            //
+            // task = new($"{nameof(TaskData)}_2")
+            // {
+            //     Name = $"Work",
+            //     Description = $"This is test task",
+            //     TargetDate = DateTime.Now.Date,
+            //     IsCompleted = false
+            // };
+            // repository.Add<TaskData>(task);     
+            //
+            // task = new($"{nameof(TaskData)}_3")
+            // {
+            //     Name = $"Sleep",
+            //     Description = $"This is test task",
+            //     TargetDate = DateTime.Now.Date,
+            //     IsCompleted = true
+            // };
+            // repository.Add<TaskData>(task);
+
             //
             // for (int i = 0; i < 10; i++)
             // {
