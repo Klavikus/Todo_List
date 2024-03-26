@@ -8,11 +8,20 @@ namespace Source.Presentation.Core
 {
     public class CreatedTaskView : ViewBase, ICreatedTaskView
     {
+        [SerializeField] private Sprite _completedSprite;
+        [SerializeField] private Sprite _pendingSprite;
+
         [field: SerializeField] public TMP_Text Name { get; private set; }
         [field: SerializeField] public Image StatusImage { get; private set; }
         [field: SerializeField] public ActionButton OpenViewButton { get; private set; }
 
         public void Destroy() =>
             Object.Destroy(gameObject);
+
+        public void SetCompleted() =>
+            StatusImage.sprite = _completedSprite;
+
+        public void SetPending() =>
+            StatusImage.sprite = _pendingSprite;
     }
 }

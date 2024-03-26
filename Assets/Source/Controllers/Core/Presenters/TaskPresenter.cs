@@ -39,15 +39,38 @@ namespace Source.Controllers.Core.Presenters
             _view.StatusImage.color = _taskData.IsCompleted ? Color.green : Color.red;
             _view.OpenViewButton.Clicked += OnOpenViewButtonClicked;
             _taskService.TaskChanged += OnTaskChanged;
+            OnTaskChanged(_taskData);
+        }
+
+        private Color32 HexToColor(string hex)
+        {
+            byte r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+            byte g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+            byte b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+
+            return new Color32(r, g, b, 255); // Альфа устанавливаем в максимальное значение, т.е. 255
         }
 
         private void OnTaskChanged(TaskData taskData)
         {
             if (taskData.Id != _taskData.Id)
                 return;
-            
+
+            // 00FF38 good
+            // FFAE00 bad
+
             _view.Name.text = _taskData.Name;
-            _view.StatusImage.color = _taskData.IsCompleted ? Color.green : Color.red;
+
+            if (_taskData.IsCompleted)
+            {
+                _view.SetCompleted();
+                _view.StatusImage.color = HexToColor("00FF38");
+            }
+            else
+            {
+                _view.SetPending();
+                _view.StatusImage.color = HexToColor("FFAE00");
+            }
         }
 
         public void Disable()

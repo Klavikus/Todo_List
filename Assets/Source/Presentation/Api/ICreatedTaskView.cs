@@ -10,5 +10,7 @@ namespace Source.Presentation.Api
         Image StatusImage { get; }
         ActionButton OpenViewButton { get; }
         void Destroy();
+        void SetCompleted();
+        void SetPending();
     }
 }
