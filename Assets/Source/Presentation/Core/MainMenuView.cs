@@ -2,6 +2,7 @@
 using Source.Presentation.Api;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Source.Presentation.Core
 {
@@ -18,6 +19,7 @@ namespace Source.Presentation.Core
         [field: SerializeField] public TMP_Text TodayInProgressTasksText { get; private set; }
         [field: SerializeField] public ActionButton ViewTasksButton { get; private set; }
         [field: SerializeField] public ActionButton CreateTasksButton { get; private set; }
+        [field: SerializeField] public Button CrButton { get; private set; }
 
         public void Show() =>
             _canvas.enabled = true;

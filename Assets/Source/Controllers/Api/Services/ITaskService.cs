@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Modules.DAL.Implementation.Data;
+using Modules.DAL.Implementation.Data.Entities;
 
 namespace Source.Controllers.Api.Services
 {

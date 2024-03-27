@@ -1,4 +1,5 @@
 ﻿using Modules.DAL.Implementation.Data;
+using Modules.DAL.Implementation.Data.Entities;
 using Source.Presentation.Api;
 using UnityEngine;
 

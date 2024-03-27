@@ -1,5 +1,6 @@
 ﻿using System;
 using Modules.DAL.Implementation.Data;
+using Modules.DAL.Implementation.Data.Entities;
 using Source.Common.WindowFsm;
 using Source.Common.WindowFsm.Windows;
 using Source.Controllers.Api;

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using DeadMosquito.AndroidGoodies;
 using Modules.DAL.Implementation.Data;
+using Modules.DAL.Implementation.Data.Entities;
 using Source.Common.WindowFsm;
 using Source.Common.WindowFsm.Windows;
 using Source.Controllers.Api;
@@ -48,6 +49,8 @@ namespace Source.Controllers.Core.Presenters
             _taskService.TaskCreated += UpdateTodayTaskCounter;
             _taskService.FocusedDateChanged += OnFocusedDateChanged;
 
+            _view.CrButton.onClick.AddListener(OnCreateTasksButtonClicked);
+            
             _taskService.FocusDate(DateTime.Now.Date);
         }
 
@@ -58,6 +61,8 @@ namespace Source.Controllers.Core.Presenters
             _view.ViewTasksButton.Clicked -= OnViewTasksButtonClicked;
             _taskService.TaskCreated -= UpdateTodayTaskCounter;
             _taskService.FocusedDateChanged -= OnFocusedDateChanged;
+            _view.CrButton.onClick.RemoveListener(OnCreateTasksButtonClicked);
+
         }
 
         private void OnViewTasksButtonClicked()

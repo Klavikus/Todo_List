@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using Modules.DAL.Abstract.Repositories;
 using Modules.DAL.Abstract.Services;
 using Modules.DAL.Implementation.Data;
+using Modules.DAL.Implementation.Data.Entities;
 using UnityEngine;
 
 namespace Modules.DAL.Implementation.Services

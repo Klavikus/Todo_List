@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Modules.DAL.Abstract.Repositories;
 using Modules.DAL.Implementation.Data;
+using Modules.DAL.Implementation.Data.Entities;
 using Source.Controllers.Api.Services;
 
 namespace Source.Controllers.Core.Services

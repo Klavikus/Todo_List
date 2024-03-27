@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using DeadMosquito.AndroidGoodies;
-using JetBrains.Annotations;
 using Modules.DAL.Implementation.Data;
+using Modules.DAL.Implementation.Data.Entities;
 using Source.Common.WindowFsm;
 using Source.Common.WindowFsm.Windows;
 using Source.Controllers.Api;
