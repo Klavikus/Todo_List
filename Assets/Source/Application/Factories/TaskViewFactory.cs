@@ -5,6 +5,8 @@ using Modules.DAL.Implementation.Data.Entities;
 using Source.Common.WindowFsm;
 using Source.Controllers.Api;
 using Source.Controllers.Api.Services;
+using Source.Infrastructure.Api.Services.Providers;
+using Source.Infrastructure.Core;
 using Source.Presentation.Api;
 using Source.Presentation.Core;
 using UnityEngine;
@@ -15,25 +17,28 @@ namespace Source.Application.Factories
 {
     public class TaskViewFactory : ICreatedTaskViewFactory
     {
-        [NotNull] private readonly CreatedTaskView _viewPrefab;
-        [NotNull] private readonly IWindowFsm _windowFsm;
-        [NotNull] private readonly ILogger _logger;
-        [NotNull] private readonly ITaskService _taskService;
+        private readonly CreatedTaskView _viewPrefab;
+        private readonly IWindowFsm _windowFsm;
+        private readonly ILogger _logger;
+        private readonly ITaskService _taskService;
         private readonly ITaskPresenterFactory _taskPresenterFactory;
 
         public TaskViewFactory(
-            CreatedTaskView viewPrefab,
+            ConfigurationContainer configurationContainer,
             IWindowFsm windowFsm,
             ILogger logger,
             ITaskService taskService,
             ITaskPresenterFactory taskPresenterFactory)
         {
-            _viewPrefab = viewPrefab ? viewPrefab : throw new ArgumentNullException(nameof(viewPrefab));
+            if (configurationContainer == null)
+                throw new ArgumentNullException(nameof(configurationContainer));
+
             _windowFsm = windowFsm ?? throw new ArgumentNullException(nameof(windowFsm));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _taskService = taskService ?? throw new ArgumentNullException(nameof(taskService));
-            _taskPresenterFactory =
-                taskPresenterFactory ?? throw new ArgumentNullException(nameof(taskPresenterFactory));
+            _taskPresenterFactory = taskPresenterFactory ?? throw new ArgumentNullException(nameof(taskPresenterFactory));
+         
+            _viewPrefab = configurationContainer.CreatedTaskViewPrefab;
         }
 
         public ICreatedTaskView Create(TaskData taskData, Transform parentContainer)

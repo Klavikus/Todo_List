@@ -6,13 +6,7 @@ using Modules.DAL.Implementation.Data;
 using Modules.DAL.Implementation.Data.Entities;
 using Modules.DAL.Implementation.DataContexts;
 using Modules.DAL.Implementation.Repositories;
-using Source.Application;
-using Source.Application.GameFSM;
-using Source.Infrastructure.Api;
-using Source.Infrastructure.Api.Services;
-using Source.Infrastructure.Api.Services.Providers;
 using Source.Infrastructure.Core;
-using Source.Infrastructure.Core.Services.Providers;
 using UnityEngine;
 using Zenject;
 
@@ -22,47 +16,28 @@ public class ProjectInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
+        BindProgressRepository();
+        BindConfigurationProvider();
+    }
+
+    private void BindProgressRepository()
+    {
         Type[] dataTypes = {typeof(TaskData)};
         IData gameData = new GameData(dataTypes);
         IDataContext dataContext = new JsonPrefsDataContext(gameData, "JsonData");
         IProgressRepository repository = new CompositeRepository(dataContext, dataTypes);
 
         Container
-            .BindInterfacesTo(typeof(CompositeRepository))
+            .Bind<IProgressRepository>()
             .FromInstance(repository)
             .AsSingle();
-        
-        // BindNotUsed();
     }
 
-    private void BindNotUsed()
+    private void BindConfigurationProvider()
     {
-        IConfigurationProvider configurationProvider = new ConfigurationProvider(_configurationContainer);
-
         Container
-            .Bind<IConfigurationProvider>()
-            .FromMethod(() => new ConfigurationProvider(_configurationContainer))
-            .AsSingle();
-
-        Container
-            .Bind<ICoroutineRunner>()
-            .FromMethod(() => new GameObject(nameof(CoroutineRunner)).AddComponent<CoroutineRunner>())
-            .AsSingle();
-
-        Container
-            .Bind<IResourceProvider>()
-            .FromMethod(() => new CustomResourceProvider())
-            .AsSingle();
-
-        Container
-            .BindInterfacesAndSelfTo<GameStateMachine>()
-            .AsSingle();
-        Container
-            .Bind<SceneLoader>()
-            .AsSingle();
-
-        Container
-            .Bind<Game>()
+            .Bind<ConfigurationContainer>()
+            .FromInstance(_configurationContainer)
             .AsSingle();
     }
 }

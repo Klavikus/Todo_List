@@ -1,15 +1,6 @@
-﻿using Source.Controllers.Api.Services;
-using Source.Controllers.Core.Services;
-using Source.Infrastructure.Api;
-using Source.Infrastructure.Api.GameFsm;
-using Source.Infrastructure.Api.Services;
-using Source.Infrastructure.Api.Services.Providers;
+﻿using Source.Infrastructure.Api.GameFsm;
 using Source.Infrastructure.Core;
-using Source.Infrastructure.Core.Services;
 using Source.Infrastructure.Core.Services.DI;
-using Source.Infrastructure.Core.Services.Providers;
-using Source.Infrastructure.Core.Services.SDK;
-using UnityEngine;
 
 namespace Source.Application.GameFSM.States
 {

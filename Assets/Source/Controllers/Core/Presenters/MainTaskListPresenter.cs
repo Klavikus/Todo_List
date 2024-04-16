@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using DeadMosquito.AndroidGoodies;
-using Modules.DAL.Implementation.Data;
 using Modules.DAL.Implementation.Data.Entities;
 using Source.Common.WindowFsm;
 using Source.Common.WindowFsm.Windows;
@@ -24,8 +23,12 @@ namespace Source.Controllers.Core.Presenters
 
         private DateTime _currentDateTime;
 
-        public MainTaskListPresenter(IMainTaskListView mainTaskListView, IWindowFsm windowFsm, ILogger logger,
-            ITaskService taskService, Func<TaskData, Transform, ICreatedTaskView> createdTaskViewStrategy)
+        public MainTaskListPresenter(
+            IMainTaskListView mainTaskListView,
+            IWindowFsm windowFsm,
+            ILogger logger,
+            ITaskService taskService,
+            Func<TaskData, Transform, ICreatedTaskView> createdTaskViewStrategy)
         {
             _mainTaskListView = mainTaskListView ?? throw new ArgumentNullException(nameof(mainTaskListView));
             _windowFsm = windowFsm ?? throw new ArgumentNullException(nameof(windowFsm));

@@ -59,7 +59,6 @@ namespace Source.Controllers.Core.Presenters
             _view.ViewTasksButton.Clicked -= OnViewTasksButtonClicked;
             _taskService.TaskCreated -= UpdateTodayTaskCounter;
             _taskService.FocusedDateChanged -= OnFocusedDateChanged;
-
         }
 
         private void OnViewTasksButtonClicked()

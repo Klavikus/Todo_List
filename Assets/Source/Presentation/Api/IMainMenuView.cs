@@ -1,6 +1,5 @@
 using Source.Common.Components.Implementations.Buttons;
 using TMPro;
-using UnityEngine.UI;
 
 namespace Source.Presentation.Api
 {

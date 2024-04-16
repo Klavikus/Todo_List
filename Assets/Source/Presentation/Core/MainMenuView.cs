@@ -2,7 +2,6 @@
 using Source.Presentation.Api;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Source.Presentation.Core
 {
@@ -25,5 +24,7 @@ namespace Source.Presentation.Core
 
         public void Hide() =>
             _canvas.enabled = false;
+
+
     }
 }
