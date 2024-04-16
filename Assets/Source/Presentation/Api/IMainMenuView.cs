@@ -15,7 +15,6 @@ namespace Source.Presentation.Api
         TMP_Text TodayTasksText { get; }
         TMP_Text TodayCompletedTasksText { get; }
         TMP_Text TodayInProgressTasksText { get; }
-        Button CrButton { get; }
         public void Show();
         public void Hide();
     }

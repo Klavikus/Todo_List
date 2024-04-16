@@ -1,5 +1,6 @@
 using Source.Application.Builders;
 using UnityEngine;
+using Zenject;
 
 namespace Source.Application.Bootstrap
 {
@@ -7,20 +8,21 @@ namespace Source.Application.Bootstrap
     {
         private Game _game;
 
-        private void Awake()
+        [Inject]
+        private void Construct(Game game)
         {
             DontDestroyOnLoad(this);
             
-            _game = new GameBuilder().Build();
+            _game = game;
         }
 
-        private void Start() => 
+        private void Start() =>
             _game.Run();
 
-        private void Update() => 
+        private void Update() =>
             _game.Update();
 
-        private void OnDestroy() => 
+        private void OnDestroy() =>
             _game.Finish();
     }
 }

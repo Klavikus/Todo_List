@@ -49,8 +49,6 @@ namespace Source.Controllers.Core.Presenters
             _taskService.TaskCreated += UpdateTodayTaskCounter;
             _taskService.FocusedDateChanged += OnFocusedDateChanged;
 
-            _view.CrButton.onClick.AddListener(OnCreateTasksButtonClicked);
-            
             _taskService.FocusDate(DateTime.Now.Date);
         }
 
@@ -61,7 +59,6 @@ namespace Source.Controllers.Core.Presenters
             _view.ViewTasksButton.Clicked -= OnViewTasksButtonClicked;
             _taskService.TaskCreated -= UpdateTodayTaskCounter;
             _taskService.FocusedDateChanged -= OnFocusedDateChanged;
-            _view.CrButton.onClick.RemoveListener(OnCreateTasksButtonClicked);
 
         }
 

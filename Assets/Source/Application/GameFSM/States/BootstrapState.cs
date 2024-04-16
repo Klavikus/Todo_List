@@ -50,25 +50,6 @@ namespace Source.Application.GameFSM.States
 
         private void RegisterServices()
         {
-            ConfigurationContainer configurationContainer = new ResourceProvider().Load<ConfigurationContainer>();
-            IConfigurationProvider configurationProvider = new ConfigurationProvider(configurationContainer);
-            ICoroutineRunner coroutineRunner = new GameObject(nameof(CoroutineRunner)).AddComponent<CoroutineRunner>();
-         
-            FirebaseService firebaseService = new FirebaseService();
-            
-            ISaveService saveService = new SaveService();
-           
-            IResourceProvider resourceProvider = new ResourceProvider();
-            _services.RegisterAsSingle(resourceProvider);
-
-
-
-            _services.RegisterAsSingle<IFirebaseService>(firebaseService);
-            
-            _services.RegisterAsSingle<IGameStateMachine>(_gameStateMachine);
-            _services.RegisterAsSingle(coroutineRunner);
-            _services.RegisterAsSingle(configurationProvider);
-
             _services.LockRegister();
         }
 

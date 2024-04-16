@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 
 namespace Source.Infrastructure.Core.Services.Providers
 {
-    public class ResourceProvider : IResourceProvider
+    public class CustomResourceProvider : IResourceProvider
     {
         private static readonly Dictionary<Type, string> ResourcePathByType = new()
         {

@@ -6,6 +6,10 @@ namespace Source.Application.Builders
 {
     internal class GameBuilder
     {
+        public GameBuilder()
+        {
+            
+        }
         public Game Build()
         {
             SceneLoader sceneLoader = new SceneLoaderFactory().Create();

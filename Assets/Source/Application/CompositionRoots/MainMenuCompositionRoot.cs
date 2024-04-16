@@ -16,14 +16,14 @@ using Source.Controllers.Core.Services;
 using Source.Controllers.Core.WindowFsms;
 using Source.Controllers.Core.WindowFsms.Windows;
 using Source.Infrastructure.Core;
-using Source.Infrastructure.Core.Services.DI;
 using Source.Presentation.Core;
 using UnityEngine;
+using Zenject;
 using ILogger = Source.Controllers.Api.Services.ILogger;
 
 namespace Source.Application.CompositionRoots
 {
-    public class MainMenuCompositionRoot : SceneCompositionRoot
+    public class MainMenuCompositionRoot : MonoBehaviour
     {
         [SerializeField] private MainMenuView _mainMenuView;
         [SerializeField] private MainTaskListView _mainTaskListView;
@@ -31,17 +31,15 @@ namespace Source.Application.CompositionRoots
         [SerializeField] private TaskView _taskView;
         [SerializeField] private ConfigurationContainer _configurationContainer;
 
-        private void Start() =>
-            Initialize(new ServiceContainer());
-
-        public override async void Initialize(ServiceContainer serviceContainer)
+        [Inject]
+        public async void Initialize(IProgressRepository repository)
         {
-            Type[] dataTypes = {typeof(TaskData)};
-            IData gameData = new GameData(dataTypes);
-            IDataContext dataContext = new JsonPrefsDataContext(gameData, "JsonData");
-            IProgressRepository repository = new CompositeRepository(dataContext, dataTypes);
+            // Type[] dataTypes = {typeof(TaskData)};
+            // IData gameData = new GameData(dataTypes);
+            // IDataContext dataContext = new JsonPrefsDataContext(gameData, "JsonData");
+            // IProgressRepository repository = new CompositeRepository(dataContext, dataTypes);
 
-            await dataContext.Load();
+            await repository.Load();
 
             Dictionary<Type, IWindow> windows = new Dictionary<Type, IWindow>()
             {
@@ -64,7 +62,7 @@ namespace Source.Application.CompositionRoots
 
             MainMenuPresenter mainMenuPresenter = new(_mainMenuView, windowFsm, logger, taskService);
             MainTaskListPresenter mainTaskListPresenter = new(_mainTaskListView, windowFsm, logger, taskService,
-                    (data, container) => taskViewFactory.Create(data, container));
+                (data, container) => taskViewFactory.Create(data, container));
             TaskCreationPresenter taskCreationPresenter = new(_taskCreationView, windowFsm, logger, taskService);
             TaskViewPresenter taskViewPresenter = new(_taskView, windowFsm, logger, taskService);
 
