@@ -2,15 +2,15 @@
 using Modules.MVPPassiveView.Runtime;
 using Source.Controllers.Core.Presenters;
 using Source.Presentation.Api.Views;
-using Zenject;
+using VContainer;
 
 namespace Source.Application.Factories
 {
     public class SceneFactory : ISceneFactory
     {
-        private readonly DiContainer _container;
+        private readonly IObjectResolver _container;
 
-        public SceneFactory(DiContainer container)
+        public SceneFactory(IObjectResolver container)
         {
             _container = container;
         }

@@ -12,8 +12,8 @@
         "Presentation.Api",
         "DAL.Runtime",
         "UniTask",
-        "Zenject",
-        "LastSynapse.Modules.MVPPassiveView.Runtime"
+        "LastSynapse.Modules.MVPPassiveView.Runtime",
+        "VContainer"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

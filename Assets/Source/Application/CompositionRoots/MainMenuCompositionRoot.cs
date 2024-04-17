@@ -1,15 +1,18 @@
 using Source.Application.Factories;
-using UnityEngine;
-using Zenject;
+using VContainer.Unity;
 
 namespace Source.Application.CompositionRoots
 {
-    public class MainMenuCompositionRoot : MonoBehaviour
+    public class MainMenuCompositionRoot : IStartable
     {
-        [Inject]
-        public void Initialize(ISceneFactory sceneFactory)
+        private readonly ISceneFactory _sceneFactory;
+
+        public MainMenuCompositionRoot(ISceneFactory sceneFactory)
         {
-            sceneFactory.CreateMainScene();
+            _sceneFactory = sceneFactory;
         }
+
+        public void Start() =>
+            _sceneFactory.CreateMainScene();
     }
 }
