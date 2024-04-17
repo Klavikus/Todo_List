@@ -13,9 +13,13 @@ namespace Modules.MVPPassiveView.Runtime
                 throw new ArgumentNullException(nameof(presenter));
 
             gameObject.SetActive(false);
+            
             OnBeforeConstruct();
+            
             _presenter = presenter;
             gameObject.SetActive(true);
+            _presenter.Enable();
+
             OnAfterConstruct();
         }
 
@@ -25,12 +29,9 @@ namespace Modules.MVPPassiveView.Runtime
 
         public virtual void OnAfterConstruct()
         {
-            _presenter.Enable();
         }
 
-        private void OnDestroy()
-        {
+        private void OnDestroy() =>
             _presenter?.Disable();
-        }
     }
 }
