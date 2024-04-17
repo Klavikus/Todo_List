@@ -5,12 +5,14 @@ using System.Linq;
 using DeadMosquito.AndroidGoodies;
 using Modules.DAL.Implementation.Data;
 using Modules.DAL.Implementation.Data.Entities;
+using Modules.MVPPassiveView.Runtime;
 using Source.Common.WindowFsm;
 using Source.Common.WindowFsm.Windows;
 using Source.Controllers.Api;
 using Source.Controllers.Api.Services;
 using Source.Controllers.Core.WindowFsms.Windows;
 using Source.Presentation.Api;
+using Source.Presentation.Api.Views;
 
 namespace Source.Controllers.Core.Presenters
 {

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using DeadMosquito.AndroidGoodies;
 using Modules.DAL.Implementation.Data.Entities;
+using Modules.MVPPassiveView.Runtime;
 using Source.Common.WindowFsm;
 using Source.Common.WindowFsm.Windows;
-using Source.Controllers.Api;
 using Source.Controllers.Api.Services;
 using Source.Controllers.Core.WindowFsms.Windows;
 using Source.Presentation.Api;
-using UnityEngine;
-using ILogger = Source.Controllers.Api.Services.ILogger;
+using Source.Presentation.Api.Factories;
+using Source.Presentation.Api.Views;
 
 namespace Source.Controllers.Core.Presenters
 {
@@ -19,7 +19,7 @@ namespace Source.Controllers.Core.Presenters
         private readonly IWindowFsm _windowFsm;
         private readonly ILogger _logger;
         private readonly ITaskService _taskService;
-        private readonly Func<TaskData, Transform, ICreatedTaskView> _createdTaskViewStrategy;
+        private readonly ICreatedTaskViewFactory _createdTaskFactory;
 
         private DateTime _currentDateTime;
 
@@ -28,14 +28,13 @@ namespace Source.Controllers.Core.Presenters
             IWindowFsm windowFsm,
             ILogger logger,
             ITaskService taskService,
-            Func<TaskData, Transform, ICreatedTaskView> createdTaskViewStrategy)
+            ICreatedTaskViewFactory createdTaskFactory)
         {
             _mainTaskListView = mainTaskListView ?? throw new ArgumentNullException(nameof(mainTaskListView));
             _windowFsm = windowFsm ?? throw new ArgumentNullException(nameof(windowFsm));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _taskService = taskService ?? throw new ArgumentNullException(nameof(taskService));
-            _createdTaskViewStrategy =
-                createdTaskViewStrategy ?? throw new ArgumentNullException(nameof(createdTaskViewStrategy));
+            _createdTaskFactory = createdTaskFactory ?? throw new ArgumentNullException(nameof(createdTaskFactory));
         }
 
         public void Enable()
@@ -100,7 +99,7 @@ namespace Source.Controllers.Core.Presenters
                 taskCreationView.Destroy();
 
             foreach (TaskData taskData in createdTasks)
-                _createdTaskViewStrategy.Invoke(taskData, _mainTaskListView.CreatedTaskContainer);
+                _createdTaskFactory.Create(taskData, _mainTaskListView.CreatedTaskContainer);
         }
 
         private void OnSelectDateButtonClicked()

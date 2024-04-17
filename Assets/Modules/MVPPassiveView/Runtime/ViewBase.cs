@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Modules.MVPPassiveView.Runtime
 {
-    public abstract class ViewBase : MonoBehaviour
+    public abstract class ViewBase : MonoBehaviour, IView
     {
         private IPresenter _presenter;
 

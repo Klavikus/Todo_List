@@ -1,12 +1,12 @@
 ﻿using System;
-using JetBrains.Annotations;
-using Modules.DAL.Implementation.Data;
+using System.Globalization;
 using Modules.DAL.Implementation.Data.Entities;
+using Modules.MVPPassiveView.Runtime;
 using Source.Common.WindowFsm;
-using Source.Controllers.Api;
 using Source.Controllers.Api.Services;
 using Source.Controllers.Core.WindowFsms.Windows;
 using Source.Presentation.Api;
+using Source.Presentation.Api.Views;
 using UnityEngine;
 using ILogger = Source.Controllers.Api.Services.ILogger;
 
@@ -46,9 +46,9 @@ namespace Source.Controllers.Core.Presenters
 
         private Color32 HexToColor(string hex)
         {
-            byte r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-            byte g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-            byte b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+            byte r = byte.Parse(hex.Substring(0, 2), NumberStyles.HexNumber);
+            byte g = byte.Parse(hex.Substring(2, 2), NumberStyles.HexNumber);
+            byte b = byte.Parse(hex.Substring(4, 2), NumberStyles.HexNumber);
 
             return new Color32(r, g, b, 255); // Альфа устанавливаем в максимальное значение, т.е. 255
         }
